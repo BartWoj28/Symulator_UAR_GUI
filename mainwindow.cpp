@@ -73,7 +73,7 @@ void MainWindow::sig()
 {
     signal newsig;
     string text=ui->comboBox->currentText().toStdString();
-    if(text=="Prosty")newsig=signal::syg_prost;
+    if(text=="Pros")newsig=signal::syg_prost;
     else if(text=="Sinusoida")newsig=signal::syg_sin;
     else newsig=signal::sk_jed;
     sym.set_syg(newsig);
@@ -101,26 +101,28 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
 void MainWindow::advance()
 {
     if(sym.get_start()){
+
     sym.symulacja();
     //chart1
     series->append(sym.get_ite(),sym.get_u());
     //chart1->legend()->hide();
     //chart1->addSeries(series);
     //chart1->createDefaultAxes();
-    chart1->axes(Qt::Vertical).first()->setRange(0,sym.get_ite());
-    chart1->axes(Qt::Horizontal).first()->setRange(0,sym.get_u());
+    chart1->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+    chart1->axes(Qt::Vertical).first()->setRange(0,sym.get_u()*1.5);
     ui->ChartUchyb->setChart(chart1);
 
     //chart2
     series2->append(sym.get_ite(),sym.get_Zad());
     series3->append(sym.get_ite(),sym.get_Y());
-    chart2->legend()->hide();
-    chart2->addSeries(series2);
-    chart2->createDefaultAxes();
-    chart2->addSeries(series3);
-    chart2->createDefaultAxes();
-    chart2->axes(Qt::Vertical).first()->setRange(0,sym.get_ite());
-    if(sym.get_Zad()>sym.get_Y())chart2->axes(Qt::Horizontal).first()->setRange(0,sym.get_Zad());
+    //chart2->legend()->hide();
+    //chart2->addSeries(series2);
+    //chart2->createDefaultAxes();
+    //chart2->addSeries(series3);
+    //chart2->createDefaultAxes();
+    chart2->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+    if(sym.get_Zad()>sym.get_Y())chart2->axes(Qt::Vertical).first()->setRange(0,sym.get_Zad()*1.5);
+    else chart2->axes(Qt::Vertical).first()->setRange(0,sym.get_Y()*1.5);
     ui->Chartwartosci->setChart(chart2);
     //ui->graphicsView_2->setRenderHint(QPainter::Antialiasing);
     //ui->graphicsView_2->setVisible(true);
@@ -139,11 +141,11 @@ void MainWindow::advance()
     //chart3->createDefaultAxes();
     //chart3->addSeries(series7);
     //chart3->createDefaultAxes();
-    chart3->axes(Qt::Vertical).first()->setRange(0,sym.get_ite());
-    if(sym.get_P()>=sym.get_I()&&sym.get_P()>=sym.get_D()&&sym.get_ster()<=sym.get_P())chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_P());
-    else if(sym.get_I()>=sym.get_P()&&sym.get_I()>=sym.get_D()&&sym.get_I()>=sym.get_ster())chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_I());
-    else if(sym.get_D()>=sym.get_P()&&sym.get_D()>=sym.get_I()&&sym.get_D()>=sym.get_ster())chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_D());
-    else chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_ster());
+    chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+    if(sym.get_P()>=sym.get_I()&&sym.get_P()>=sym.get_D()&&sym.get_ster()<=sym.get_P())chart3->axes(Qt::Vertical).first()->setRange(0,sym.get_P()*1.5);
+    else if(sym.get_I()>=sym.get_P()&&sym.get_I()>=sym.get_D()&&sym.get_I()>=sym.get_ster())chart3->axes(Qt::Vertical).first()->setRange(0,sym.get_I()*1.5);
+    else if(sym.get_D()>=sym.get_P()&&sym.get_D()>=sym.get_I()&&sym.get_D()>=sym.get_ster())chart3->axes(Qt::Vertical).first()->setRange(0,sym.get_D()*1.5);
+    else chart3->axes(Qt::Vertical).first()->setRange(0,sym.get_ster()*1.5);
     ui->ChartSterowanie->setChart(chart3);
     //ui->graphicsView_3->setRenderHint(QPainter::Antialiasing);
     //ui->graphicsView_3->setVisible(true);

@@ -20,6 +20,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -47,9 +48,6 @@ public:
     QLabel *label_14;
     QLabel *label_15;
     QLabel *label_16;
-    QChartView *Chartwartosci;
-    QChartView *ChartUchyb;
-    QChartView *ChartSterowanie;
     QSpinBox *spinBox;
     QDoubleSpinBox *ustawA;
     QDoubleSpinBox *ustawP;
@@ -61,6 +59,11 @@ public:
     QDoubleSpinBox *ustawA1;
     QDoubleSpinBox *ustawB1;
     QPushButton *pushButton_2;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout;
+    QChartView *ChartUchyb;
+    QChartView *Chartwartosci;
+    QChartView *ChartSterowanie;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -131,15 +134,6 @@ public:
         label_16 = new QLabel(centralwidget);
         label_16->setObjectName("label_16");
         label_16->setGeometry(QRect(20, 440, 63, 20));
-        Chartwartosci = new QChartView(centralwidget);
-        Chartwartosci->setObjectName("Chartwartosci");
-        Chartwartosci->setGeometry(QRect(470, 0, 731, 181));
-        ChartUchyb = new QChartView(centralwidget);
-        ChartUchyb->setObjectName("ChartUchyb");
-        ChartUchyb->setGeometry(QRect(470, 190, 731, 231));
-        ChartSterowanie = new QChartView(centralwidget);
-        ChartSterowanie->setObjectName("ChartSterowanie");
-        ChartSterowanie->setGeometry(QRect(470, 430, 731, 221));
         spinBox = new QSpinBox(centralwidget);
         spinBox->setObjectName("spinBox");
         spinBox->setGeometry(QRect(190, 10, 48, 29));
@@ -190,6 +184,28 @@ public:
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName("pushButton_2");
         pushButton_2->setGeometry(QRect(300, 90, 83, 29));
+        widget = new QWidget(centralwidget);
+        widget->setObjectName("widget");
+        widget->setGeometry(QRect(500, 0, 741, 671));
+        verticalLayout = new QVBoxLayout(widget);
+        verticalLayout->setSpacing(0);
+        verticalLayout->setObjectName("verticalLayout");
+        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        ChartUchyb = new QChartView(widget);
+        ChartUchyb->setObjectName("ChartUchyb");
+
+        verticalLayout->addWidget(ChartUchyb);
+
+        Chartwartosci = new QChartView(widget);
+        Chartwartosci->setObjectName("Chartwartosci");
+
+        verticalLayout->addWidget(Chartwartosci);
+
+        ChartSterowanie = new QChartView(widget);
+        ChartSterowanie->setObjectName("ChartSterowanie");
+
+        verticalLayout->addWidget(ChartSterowanie);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -215,7 +231,7 @@ public:
         label_4->setText(QCoreApplication::translate("MainWindow", "P", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "T", nullptr));
         comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Skok", nullptr));
-        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Prosty", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Pros", nullptr));
         comboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Sinusoida", nullptr));
 
         label_6->setText(QCoreApplication::translate("MainWindow", "Sygna\305\202", nullptr));
