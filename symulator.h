@@ -38,7 +38,7 @@ public:
     void set_syg(signal s) { syg = s; }
     void set_zad(double a) { gen3.set_A(a); gen2.set_A(a);  gen1.set_A(a);}
     void set_T(int t) { gen1.set_t(t); gen2.set_T(t); gen3.set_T(t); }
-    void set_p(int p) { gen2.set_p(p); }
+    void set_p(double p) { gen2.set_p(p); }
     int get_K_pid(){return pid.get_k();}
     int get_ite(){return ite;}
     double get_u(){return u;}

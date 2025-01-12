@@ -19,7 +19,7 @@ public:
 	void set_A(double Am) { A = Am; }
 	void set_T(int Tm) { if (Tm > 0) T = Tm; }
 	void set_p(double pm) { p = fabs(pm); }
-	double operator()(int im) { if ((im % T) < p * T) return A; else return 0; }
+    double operator()(int im) { if ((im % T) < p * T) return A; else return 0; }
 };
 
 class syg_sin {
