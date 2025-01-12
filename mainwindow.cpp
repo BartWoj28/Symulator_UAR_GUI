@@ -181,7 +181,6 @@ void MainWindow::on_ustawKpid_valueChanged(double arg1)
 void MainWindow::on_ustawTi_valueChanged(double arg1)
 {
     sym.set_pid_Ti(arg1);
-    cerr<<arg1;
 }
 
 
