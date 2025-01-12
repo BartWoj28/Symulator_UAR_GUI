@@ -82,18 +82,18 @@ double ModelARX::symuluj(double e)
 
 	if (Z == true)y_s += normal(rng);
 
-	kol_y.push_front(y_s);
-	kol_y.pop_back();
+    kol_y.push_front(y_s);
+    kol_y.pop_back();
 
-	buf_op.push_back(e);
+    buf_op.push_back(e);
 	buf_op.pop_front();
 	kol_u.push_front(buf_op[0]);
 
 	kol_u.pop_back();
 
 	Set_Y(y_s);
-	return Get_Y();
 
+	return Get_Y();
 
 }
 

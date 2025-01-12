@@ -60,6 +60,7 @@ public:
     QSpinBox *ustawkarx;
     QDoubleSpinBox *ustawA1;
     QDoubleSpinBox *ustawB1;
+    QPushButton *pushButton_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -67,7 +68,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1125, 657);
+        MainWindow->resize(1246, 708);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         pushButton = new QPushButton(centralwidget);
@@ -132,13 +133,13 @@ public:
         label_16->setGeometry(QRect(20, 440, 63, 20));
         Chartwartosci = new QChartView(centralwidget);
         Chartwartosci->setObjectName("Chartwartosci");
-        Chartwartosci->setGeometry(QRect(440, 0, 661, 171));
+        Chartwartosci->setGeometry(QRect(470, 0, 731, 181));
         ChartUchyb = new QChartView(centralwidget);
         ChartUchyb->setObjectName("ChartUchyb");
-        ChartUchyb->setGeometry(QRect(440, 180, 661, 171));
+        ChartUchyb->setGeometry(QRect(470, 190, 731, 231));
         ChartSterowanie = new QChartView(centralwidget);
         ChartSterowanie->setObjectName("ChartSterowanie");
-        ChartSterowanie->setGeometry(QRect(440, 360, 661, 191));
+        ChartSterowanie->setGeometry(QRect(470, 430, 731, 221));
         spinBox = new QSpinBox(centralwidget);
         spinBox->setObjectName("spinBox");
         spinBox->setGeometry(QRect(190, 10, 48, 29));
@@ -175,7 +176,7 @@ public:
         ustawkarx = new QSpinBox(centralwidget);
         ustawkarx->setObjectName("ustawkarx");
         ustawkarx->setGeometry(QRect(20, 470, 48, 29));
-        ustawkarx->setValue(0);
+        ustawkarx->setValue(1);
         ustawA1 = new QDoubleSpinBox(centralwidget);
         ustawA1->setObjectName("ustawA1");
         ustawA1->setGeometry(QRect(170, 470, 67, 29));
@@ -186,10 +187,13 @@ public:
         ustawB1->setGeometry(QRect(90, 540, 67, 29));
         ustawB1->setSingleStep(0.500000000000000);
         ustawB1->setValue(2.000000000000000);
+        pushButton_2 = new QPushButton(centralwidget);
+        pushButton_2->setObjectName("pushButton_2");
+        pushButton_2->setGeometry(QRect(300, 90, 83, 29));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1125, 25));
+        menubar->setGeometry(QRect(0, 0, 1246, 25));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -225,6 +229,7 @@ public:
         label_14->setText(QCoreApplication::translate("MainWindow", "ARX", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "B", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "k", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
     } // retranslateUi
 
 };
