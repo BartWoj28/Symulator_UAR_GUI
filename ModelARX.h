@@ -35,7 +35,7 @@ public:
 	double symuluj(double e);
 	ModelARX(vector<double>, vector<double>, unsigned int, double);
     ModelARX(){};
-    void change_Z(){!Z;}
+    void change_Z(){Z=!Z;}
     void clean(){kol_y.clear();kol_u.clear();buf_op.clear();}
 };
 
