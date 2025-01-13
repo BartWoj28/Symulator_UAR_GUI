@@ -43,7 +43,7 @@ public:
 	double I() { if (Ti != 0) return ((1 / Ti) * ej); else return 0; }
 	double D() { return Td * (ei - eip); }
 	double PID() { return P() + I() + D(); }
-	void reset() { ej = 0; eip = 0; }
+    void reset() { ej = 0; eip = 0;}
 	RegulatorPID(double km = 0, double Tim = 0, double Tdm = 0) { ei = 0; ej = 0; eip = 0; k = km; Ti = Tim; Td = Tdm; }
 	double symuluj(double eim) { set_ei(eim); return PID(); }
 };

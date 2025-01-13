@@ -93,11 +93,11 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
 
 void MainWindow::advance()
 {
-    if(sym.get_start()){
         if(sym.get_start()){
             sym.symulacja();
 
             //chart1
+
             series->append(sym.get_ite(),sym.get_u());
             //chart1->legend()->hide();
             //chart1->addSeries(series);
@@ -147,7 +147,7 @@ void MainWindow::advance()
             //ui->graphicsView_3->setRenderHint(QPainter::Antialiasing);
             //ui->graphicsView_3->setVisible(true);
     }
-}
+
 }
 
 void MainWindow::on_ustawA_valueChanged(double arg1)
@@ -212,16 +212,19 @@ void MainWindow::on_pushButton_2_clicked()
 
 void MainWindow::on_checkBox_stateChanged(int arg1)
 {
-
+    sym.change_Z();
+    //cerr<<"changed";
 }
 
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    sym.Setup();
-    sym.reset();
+    //cerr<<sym.get_Y()<<" ";
     timer->stop();
     working=false;
+    sym.StartStop();
+    sym.Setup();
+    sym.reset();
     delete series;
     delete series2;
     delete series3;
@@ -243,6 +246,10 @@ void MainWindow::on_pushButton_3_clicked()
     series5->setName("I");
     series6->setName("D");
     series7->setName("sterowanie");
+
+    //maks_y1=-1;
+    //maks_y2=0;
+    //maks_y3=0;
 
     chart1->addSeries(series);
     chart2->addSeries(series2);

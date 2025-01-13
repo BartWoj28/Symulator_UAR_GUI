@@ -68,7 +68,7 @@ double ModelARX::symuluj(double e)
 	double y_s = 0;
 	random_device srng; mt19937 rng;
 	rng.seed(srng());
-    normal_distribution<double> normal(0.05, 0.05);
+    normal_distribution<double> normal(0.2, 0.2);
 
 	for (size_t i = 0; i < B.size(); i++) {
 
@@ -81,6 +81,7 @@ double ModelARX::symuluj(double e)
 	}
 
 	if (Z == true)y_s += normal(rng);
+    cerr<<y_s<<" ";
     //cerr<<normal(rng);
 
     kol_y.push_front(y_s);

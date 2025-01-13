@@ -61,12 +61,14 @@ public:
     void symulacja();
     void change_z(){arx.change_Z();}
     void Setup(){
+        arx.clean();
         arx.Set_Y(0);
         pid.set_ei(0);
         pid.set_ei(0);
         ite = 0;
         u = 0;
-        y_pid = 0;};
+        y_pid = 0;}
+    void change_Z(){arx.change_Z();}
 };
 
 
