@@ -174,7 +174,7 @@ public:
         ustawkarx = new QSpinBox(centralwidget);
         ustawkarx->setObjectName("ustawkarx");
         ustawkarx->setGeometry(QRect(20, 470, 48, 29));
-        ustawkarx->setMinimum(1);
+        ustawkarx->setMinimum(0);
         ustawkarx->setValue(1);
         ustawA1 = new QDoubleSpinBox(centralwidget);
         ustawA1->setObjectName("ustawA1");

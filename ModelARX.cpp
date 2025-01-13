@@ -1,6 +1,5 @@
 #include "ModelARX.h"
 #include "RegulatorPID.h"
-#include "WartoscZadana.h"
 #include <random>
 
 void ModelARX::CheckSize() {
@@ -64,7 +63,8 @@ void ModelARX::CheckSize() {
 double ModelARX::symuluj(double e)
 {
 	CheckSize();
-
+    buf_op.push_back(e);
+    kol_u.push_front(buf_op[0]);
 	double y_s = 0;
 	random_device srng; mt19937 rng;
 	rng.seed(srng());
@@ -87,9 +87,9 @@ double ModelARX::symuluj(double e)
     kol_y.push_front(y_s);
     kol_y.pop_back();
 
-    buf_op.push_back(e);
+    //buf_op.push_back(e);
 	buf_op.pop_front();
-	kol_u.push_front(buf_op[0]);
+    //kol_u.push_front(buf_op[0]);
 
 	kol_u.pop_back();
 
