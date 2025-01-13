@@ -12,6 +12,7 @@
 #include <QtCharts/QChartView>
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QLabel>
@@ -58,11 +59,12 @@ public:
     QSpinBox *ustawkarx;
     QDoubleSpinBox *ustawA1;
     QDoubleSpinBox *ustawB1;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QChartView *ChartUchyb;
     QChartView *Chartwartosci;
     QChartView *ChartSterowanie;
+    QCheckBox *checkBox;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -78,7 +80,7 @@ public:
         pushButton->setGeometry(QRect(30, 10, 83, 29));
         pushButton_3 = new QPushButton(centralwidget);
         pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setGeometry(QRect(260, 10, 83, 29));
+        pushButton_3->setGeometry(QRect(280, 10, 83, 29));
         label = new QLabel(centralwidget);
         label->setObjectName("label");
         label->setGeometry(QRect(20, 80, 81, 20));
@@ -129,7 +131,7 @@ public:
         label_14->setGeometry(QRect(20, 420, 81, 20));
         label_15 = new QLabel(centralwidget);
         label_15->setObjectName("label_15");
-        label_15->setGeometry(QRect(120, 510, 63, 20));
+        label_15->setGeometry(QRect(40, 510, 63, 20));
         label_16 = new QLabel(centralwidget);
         label_16->setObjectName("label_16");
         label_16->setGeometry(QRect(20, 440, 63, 20));
@@ -172,6 +174,7 @@ public:
         ustawkarx = new QSpinBox(centralwidget);
         ustawkarx->setObjectName("ustawkarx");
         ustawkarx->setGeometry(QRect(20, 470, 48, 29));
+        ustawkarx->setMinimum(1);
         ustawkarx->setValue(1);
         ustawA1 = new QDoubleSpinBox(centralwidget);
         ustawA1->setObjectName("ustawA1");
@@ -181,32 +184,36 @@ public:
         ustawA1->setValue(-0.400000000000000);
         ustawB1 = new QDoubleSpinBox(centralwidget);
         ustawB1->setObjectName("ustawB1");
-        ustawB1->setGeometry(QRect(90, 540, 67, 29));
+        ustawB1->setGeometry(QRect(10, 540, 67, 29));
         ustawB1->setMinimum(-99.000000000000000);
         ustawB1->setSingleStep(0.500000000000000);
         ustawB1->setValue(0.600000000000000);
-        widget = new QWidget(centralwidget);
-        widget->setObjectName("widget");
-        widget->setGeometry(QRect(500, 0, 741, 671));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(centralwidget);
+        layoutWidget->setObjectName("layoutWidget");
+        layoutWidget->setGeometry(QRect(500, 0, 741, 671));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setSpacing(0);
         verticalLayout->setObjectName("verticalLayout");
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        ChartUchyb = new QChartView(widget);
+        ChartUchyb = new QChartView(layoutWidget);
         ChartUchyb->setObjectName("ChartUchyb");
 
         verticalLayout->addWidget(ChartUchyb);
 
-        Chartwartosci = new QChartView(widget);
+        Chartwartosci = new QChartView(layoutWidget);
         Chartwartosci->setObjectName("Chartwartosci");
 
         verticalLayout->addWidget(Chartwartosci);
 
-        ChartSterowanie = new QChartView(widget);
+        ChartSterowanie = new QChartView(layoutWidget);
         ChartSterowanie->setObjectName("ChartSterowanie");
 
         verticalLayout->addWidget(ChartSterowanie);
 
+        checkBox = new QCheckBox(centralwidget);
+        checkBox->setObjectName("checkBox");
+        checkBox->setGeometry(QRect(200, 540, 41, 26));
+        checkBox->setTristate(false);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -246,6 +253,7 @@ public:
         label_14->setText(QCoreApplication::translate("MainWindow", "ARX", nullptr));
         label_15->setText(QCoreApplication::translate("MainWindow", "B", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "k", nullptr));
+        checkBox->setText(QCoreApplication::translate("MainWindow", "z", nullptr));
     } // retranslateUi
 
 };

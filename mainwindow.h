@@ -55,6 +55,10 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_checkBox_stateChanged(int arg1);
+
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
     Symulator sym;
@@ -74,7 +78,11 @@ private:
     QSplineSeries* series6 = new QSplineSeries();
     QSplineSeries* series7 = new QSplineSeries();
 
-    QTimer* timer=nullptr;
 
+    bool working=false;
+    QTimer* timer=nullptr;
+    int maks_y1=-1;
+    int maks_y2=-1;
+    double maks_y3=-1;
 };
 #endif // MAINWINDOW_H

@@ -35,6 +35,7 @@ public:
 	double symuluj(double e);
 	ModelARX(vector<double>, vector<double>, unsigned int, double);
     ModelARX(){};
+    void change_Z(){!Z;}
 };
 
 void test_ModelARX_brakPobudzenia();

@@ -59,6 +59,7 @@ public:
     double get_Y(){return arx.Get_Y();}
 
     void symulacja();
+    void change_z(){arx.change_Z();}
     void Setup(){
         arx.Set_Y(0);
         pid.set_ei(0);
