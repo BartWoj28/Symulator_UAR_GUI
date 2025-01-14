@@ -31,6 +31,12 @@ public:
     void StartStop() { sterowanie = !sterowanie; }
     void set_arx_a(std::vector<double> arx_a) { arx.Set_A(arx_a); }
     void set_arx_b(std::vector<double> arx_b) { arx.Set_A(arx_b); }
+    void set_a1(double a){arx.Set_A1(a);}
+    void set_a2(double a){arx.Set_A2(a);}
+    void set_a3(double a){arx.Set_A3(a);}
+    void set_b1(double b){arx.Set_B1(b);}
+    void set_b2(double b){arx.Set_B2(b);}
+    void set_b3(double b){arx.Set_B3(b);}
     void set_arx_k(unsigned int arx_k) { arx.Set_K(arx_k); }
     void set_pid_k(double pid_k) { pid.set_k(pid_k); }
     void set_pid_Ti(double pid_Ti) { pid.set_Ti(pid_Ti); }

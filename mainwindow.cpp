@@ -19,7 +19,11 @@ MainWindow::MainWindow(QWidget *parent)
     on_ustawTd_valueChanged(ui->ustawTd->value());
     on_ustawkarx_valueChanged(ui->ustawkarx->value());
     on_ustawA1_valueChanged(ui->ustawA1->value());
+    on_ustawA2_valueChanged(ui->ustawA2->value());
+    on_ustawA3_valueChanged(ui->ustawA3->value());
     on_ustawB1_valueChanged(ui->ustawB1->value());
+    on_ustawB2_valueChanged(ui->ustawB2->value());
+    on_ustawB3_valueChanged(ui->ustawB3->value());
 
     sig();
 
@@ -46,7 +50,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->ChartUchyb->setChart(chart1);
     ui->Chartwartosci->setChart(chart2);
     ui->ChartSterowanie->setChart(chart3);
-    //timer->start();
 }
 
 MainWindow::~MainWindow()
@@ -80,9 +83,9 @@ void MainWindow::on_pushButton_4_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    if(working)timer->stop();else timer->start();
     sym.StartStop();
-
+    working=!working;
+    if(!working)timer->stop();else timer->start();
 }
 
 
@@ -93,59 +96,50 @@ void MainWindow::on_spinBox_valueChanged(int arg1)
 
 void MainWindow::advance()
 {
-        if(sym.get_start()){
-            sym.symulacja();
+    if(sym.get_start()){
+        sym.symulacja();
 
-            //chart1
+        //chart1
 
-            series->append(sym.get_ite(),sym.get_u());
-            //chart1->legend()->hide();
-            //chart1->addSeries(series);
-            //chart1->createDefaultAxes();
-            if(sym.get_u()>maks_y1) maks_y1=sym.get_u();
-            chart1->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
-            chart1->axes(Qt::Vertical).first()->setRange(0,maks_y1*1.5);
-            ui->ChartUchyb->setChart(chart1);
+        series->append(sym.get_ite(),sym.get_u());
 
-            //chart2
-            series2->append(sym.get_ite(),sym.get_Zad());
-            series3->append(sym.get_ite(),sym.get_Y());
-            //chart2->legend()->hide();
-            //chart2->addSeries(series2);
-            //chart2->createDefaultAxes();
-            //chart2->addSeries(series3);
-            //chart2->createDefaultAxes();
-            chart2->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
-            if(sym.get_Zad()>maks_y2 && sym.get_Zad()>=sym.get_Y())maks_y2=sym.get_Zad();
-            else if(sym.get_Y()>=maks_y2) maks_y2=sym.get_Y();
-            chart2->axes(Qt::Vertical).first()->setRange(0,maks_y2*1.5);
-            ui->Chartwartosci->setChart(chart2);
-            //ui->graphicsView_2->setRenderHint(QPainter::Antialiasing);
-            //ui->graphicsView_2->setVisible(true);
+        if(sym.get_u()>maks_y1) {maks_y1=sym.get_u();}
+        if(sym.get_u()<min_y1) {min_y1=sym.get_u();}
+        chart1->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+        chart1->axes(Qt::Vertical).first()->setRange(min_y1*2,maks_y1*2);
+        //ui->ChartUchyb->setChart(chart1);
 
-            //chart3
-            series4->append(sym.get_ite(),sym.get_P());
-            series5->append(sym.get_ite(),sym.get_I());
-            series6->append(sym.get_ite(),sym.get_D());
-            series7->append(sym.get_ite(),sym.get_ster());
-            //chart3->legend()->hide();
-            // chart3->addSeries(series4);
-            //chart3->createDefaultAxes();
-            //chart3->addSeries(series5);
-            //chart3->createDefaultAxes();
-            //chart3->addSeries(series6);
-            //chart3->createDefaultAxes();
-            //chart3->addSeries(series7);
-            //chart3->createDefaultAxes();
-            if(sym.get_P()>=sym.get_I()&&sym.get_P()>=sym.get_D()&&sym.get_ster()<=sym.get_P()&&sym.get_P()>=maks_y3)maks_y3=sym.get_P();
-            else if(sym.get_I()>=sym.get_D()&&sym.get_I()>=sym.get_ster()&&sym.get_I()>=maks_y3)maks_y3=sym.get_I();
-            else if(sym.get_D()>=sym.get_ster()&&sym.get_D()>=maks_y3)maks_y3=sym.get_D();
-            else if(sym.get_ster()>=maks_y3) maks_y3=sym.get_ster();
-            chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
-            chart3->axes(Qt::Vertical).first()->setRange(0,maks_y3*1.5);
-            ui->ChartSterowanie->setChart(chart3);
-            //ui->graphicsView_3->setRenderHint(QPainter::Antialiasing);
-            //ui->graphicsView_3->setVisible(true);
+        //chart2
+        series2->append(sym.get_ite(),sym.get_Zad());
+        series3->append(sym.get_ite(),sym.get_Y());
+
+        chart2->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+        if(sym.get_Zad()>maks_y2 && sym.get_Zad()>=sym.get_Y())maks_y2=sym.get_Zad();
+        else if(sym.get_Y()>=maks_y2) maks_y2=sym.get_Y();
+        if(sym.get_Zad()<min_y2 && sym.get_Zad()<=sym.get_Y())min_y2=sym.get_Zad();
+        else if(sym.get_Y()<=min_y2) min_y2=sym.get_Y();
+        chart2->axes(Qt::Vertical).first()->setRange(min_y2*2,maks_y2*2);
+        //ui->Chartwartosci->setChart(chart2);
+
+        //chart3
+        series4->append(sym.get_ite(),sym.get_P());
+        series5->append(sym.get_ite(),sym.get_I());
+        series6->append(sym.get_ite(),sym.get_D());
+        series7->append(sym.get_ite(),sym.get_ster());
+
+
+        if(sym.get_P()>=sym.get_I()&&sym.get_P()>=sym.get_D()&&sym.get_ster()<=sym.get_P()&&sym.get_P()>=maks_y3)maks_y3=sym.get_P();
+        else if(sym.get_I()>=sym.get_D()&&sym.get_I()>=sym.get_ster()&&sym.get_I()>=maks_y3)maks_y3=sym.get_I();
+        else if(sym.get_D()>=sym.get_ster()&&sym.get_D()>=maks_y3)maks_y3=sym.get_D();
+        else if(sym.get_ster()>=maks_y3) maks_y3=sym.get_ster();
+        if(sym.get_P()<=sym.get_I()&&sym.get_P()<=sym.get_D()&&sym.get_ster()>=sym.get_P()&&sym.get_P()<=min_y3)min_y3=sym.get_P();
+        else if(sym.get_I()<=sym.get_D()&&sym.get_I()<=sym.get_ster()&&sym.get_I()<=min_y3)min_y3=sym.get_I();
+        else if(sym.get_D()<=sym.get_ster()&&sym.get_D()<=min_y3)min_y3=sym.get_D();
+        else if(sym.get_ster()<=min_y3) min_y3=sym.get_ster();
+        chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+        chart3->axes(Qt::Vertical).first()->setRange(min_y3*2,maks_y3*2);
+        //ui->ChartSterowanie->setChart(chart3);
+
     }
 
 }
@@ -194,19 +188,13 @@ void MainWindow::on_ustawkarx_valueChanged(int arg1)
 
 void MainWindow::on_ustawA1_valueChanged(double arg1)
 {
-    sym.add_A_arx(arg1);
+    sym.set_a1(arg1);
 }
 
 
 void MainWindow::on_ustawB1_valueChanged(double arg1)
 {
-    sym.add_B_arx(arg1);
-}
-
-
-void MainWindow::on_pushButton_2_clicked()
-{
-
+    sym.set_b1(arg1);
 }
 
 
@@ -219,10 +207,8 @@ void MainWindow::on_checkBox_stateChanged(int arg1)
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    //cerr<<sym.get_Y()<<" ";
-    timer->stop();
-    working=false;
-    sym.StartStop();
+    if(working)on_pushButton_clicked();
+    if(!working)timer->stop();
     sym.Setup();
     sym.reset();
     delete series;
@@ -247,9 +233,12 @@ void MainWindow::on_pushButton_3_clicked()
     series6->setName("D");
     series7->setName("sterowanie");
 
-    //maks_y1=-1;
-    //maks_y2=0;
-    //maks_y3=0;
+    maks_y1=-1;
+    maks_y2=0;
+    maks_y3=0;
+    min_y1=0;
+    min_y2=0;
+    min_y3=0;
 
     chart1->addSeries(series);
     chart2->addSeries(series2);
@@ -263,9 +252,33 @@ void MainWindow::on_pushButton_3_clicked()
     chart2->createDefaultAxes();
     chart3->createDefaultAxes();
 
-    //timer->start();
+
     ui->ChartUchyb->setChart(chart1);
     ui->Chartwartosci->setChart(chart2);
     ui->ChartSterowanie->setChart(chart3);
+}
+
+
+void MainWindow::on_ustawA2_valueChanged(double arg1)
+{
+    sym.set_a2(arg1);
+}
+
+
+void MainWindow::on_ustawA3_valueChanged(double arg1)
+{
+    sym.set_a3(arg1);
+}
+
+
+void MainWindow::on_ustawB2_valueChanged(double arg1)
+{
+    sym.set_b2(arg1);
+}
+
+
+void MainWindow::on_ustawB3_valueChanged(double arg1)
+{
+    sym.set_b3(arg1);
 }
 

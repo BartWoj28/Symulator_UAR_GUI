@@ -10,8 +10,8 @@ class ModelARX; class RegulatorPID;
 
 class ModelARX
 {
-	vector<double>A = {};
-	vector<double>B = {};
+    vector<double>A = {0.0,0.0,0.0};
+    vector<double>B = {0.0,0.0,0.0};
 	unsigned int K = 1;
 	deque<double>kol_y = {};
 	deque<double>kol_u = {};
@@ -22,6 +22,14 @@ class ModelARX
 	friend RegulatorPID;
 public:
     void Set_A(vector<double>a) {A = a; }
+    void Set_A1(double a){A[0]=a;}
+    void Set_A2(double a){A[1]=a;}
+    void Set_A3(double a){A[2]=a;}
+
+    void Set_B1(double b){B[0]=b;}
+    void Set_B2(double b){B[1]=b;}
+    void Set_B3(double b){B[2]=b;}
+
     void Add_A(double a){A.push_back(a);}
     void Set_B(vector<double>b) {B = b; }
     void Add_B(double b){B.push_back(b);}

@@ -15,6 +15,7 @@
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -41,7 +42,6 @@ public:
     QLabel *label_6;
     QLabel *label_7;
     QLabel *label_8;
-    QLabel *label_9;
     QLabel *label_10;
     QLabel *label_11;
     QPushButton *pushButton_4;
@@ -57,14 +57,23 @@ public:
     QDoubleSpinBox *ustawTi;
     QDoubleSpinBox *ustawTd;
     QSpinBox *ustawkarx;
-    QDoubleSpinBox *ustawA1;
-    QDoubleSpinBox *ustawB1;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QChartView *ChartUchyb;
     QChartView *Chartwartosci;
     QChartView *ChartSterowanie;
     QCheckBox *checkBox;
+    QLabel *label_9;
+    QWidget *layoutWidget1;
+    QHBoxLayout *horizontalLayout;
+    QDoubleSpinBox *ustawA1;
+    QDoubleSpinBox *ustawA2;
+    QDoubleSpinBox *ustawA3;
+    QWidget *layoutWidget2;
+    QHBoxLayout *horizontalLayout_2;
+    QDoubleSpinBox *ustawB1;
+    QDoubleSpinBox *ustawB2;
+    QDoubleSpinBox *ustawB3;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -111,9 +120,6 @@ public:
         label_8 = new QLabel(centralwidget);
         label_8->setObjectName("label_8");
         label_8->setGeometry(QRect(180, 280, 21, 20));
-        label_9 = new QLabel(centralwidget);
-        label_9->setObjectName("label_9");
-        label_9->setGeometry(QRect(200, 350, 41, 20));
         label_10 = new QLabel(centralwidget);
         label_10->setObjectName("label_10");
         label_10->setGeometry(QRect(20, 250, 81, 20));
@@ -122,19 +128,19 @@ public:
         label_11->setGeometry(QRect(20, 280, 21, 20));
         pushButton_4 = new QPushButton(centralwidget);
         pushButton_4->setObjectName("pushButton_4");
-        pushButton_4->setGeometry(QRect(180, 380, 83, 29));
+        pushButton_4->setGeometry(QRect(160, 370, 83, 29));
         label_12 = new QLabel(centralwidget);
         label_12->setObjectName("label_12");
-        label_12->setGeometry(QRect(200, 440, 63, 20));
+        label_12->setGeometry(QRect(20, 510, 21, 20));
         label_14 = new QLabel(centralwidget);
         label_14->setObjectName("label_14");
         label_14->setGeometry(QRect(20, 420, 81, 20));
         label_15 = new QLabel(centralwidget);
         label_15->setObjectName("label_15");
-        label_15->setGeometry(QRect(40, 510, 63, 20));
+        label_15->setGeometry(QRect(20, 580, 63, 20));
         label_16 = new QLabel(centralwidget);
         label_16->setObjectName("label_16");
-        label_16->setGeometry(QRect(20, 440, 63, 20));
+        label_16->setGeometry(QRect(20, 470, 31, 20));
         spinBox = new QSpinBox(centralwidget);
         spinBox->setObjectName("spinBox");
         spinBox->setGeometry(QRect(190, 10, 48, 29));
@@ -144,17 +150,19 @@ public:
         ustawA->setObjectName("ustawA");
         ustawA->setGeometry(QRect(20, 130, 67, 29));
         ustawA->setDecimals(3);
+        ustawA->setMinimum(-99.000000000000000);
         ustawA->setSingleStep(0.500000000000000);
         ustawA->setValue(1.000000000000000);
         ustawP = new QDoubleSpinBox(centralwidget);
         ustawP->setObjectName("ustawP");
         ustawP->setGeometry(QRect(170, 130, 67, 29));
         ustawP->setMaximum(1.000000000000000);
-        ustawP->setSingleStep(0.500000000000000);
+        ustawP->setSingleStep(0.100000000000000);
         ustawP->setValue(0.500000000000000);
         ustawT = new QSpinBox(centralwidget);
         ustawT->setObjectName("ustawT");
         ustawT->setGeometry(QRect(30, 200, 48, 29));
+        ustawT->setMinimum(1);
         ustawT->setValue(1);
         ustawKpid = new QDoubleSpinBox(centralwidget);
         ustawKpid->setObjectName("ustawKpid");
@@ -173,21 +181,9 @@ public:
         ustawTd->setValue(0.200000000000000);
         ustawkarx = new QSpinBox(centralwidget);
         ustawkarx->setObjectName("ustawkarx");
-        ustawkarx->setGeometry(QRect(20, 470, 48, 29));
+        ustawkarx->setGeometry(QRect(50, 470, 48, 29));
         ustawkarx->setMinimum(0);
         ustawkarx->setValue(1);
-        ustawA1 = new QDoubleSpinBox(centralwidget);
-        ustawA1->setObjectName("ustawA1");
-        ustawA1->setGeometry(QRect(170, 470, 67, 29));
-        ustawA1->setMinimum(-99.000000000000000);
-        ustawA1->setSingleStep(0.500000000000000);
-        ustawA1->setValue(-0.400000000000000);
-        ustawB1 = new QDoubleSpinBox(centralwidget);
-        ustawB1->setObjectName("ustawB1");
-        ustawB1->setGeometry(QRect(10, 540, 67, 29));
-        ustawB1->setMinimum(-99.000000000000000);
-        ustawB1->setSingleStep(0.500000000000000);
-        ustawB1->setValue(0.600000000000000);
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName("layoutWidget");
         layoutWidget->setGeometry(QRect(500, 0, 741, 671));
@@ -212,8 +208,69 @@ public:
 
         checkBox = new QCheckBox(centralwidget);
         checkBox->setObjectName("checkBox");
-        checkBox->setGeometry(QRect(200, 540, 41, 26));
+        checkBox->setGeometry(QRect(170, 470, 41, 26));
         checkBox->setTristate(false);
+        label_9 = new QLabel(centralwidget);
+        label_9->setObjectName("label_9");
+        label_9->setGeometry(QRect(160, 350, 63, 20));
+        layoutWidget1 = new QWidget(centralwidget);
+        layoutWidget1->setObjectName("layoutWidget1");
+        layoutWidget1->setGeometry(QRect(10, 540, 235, 31));
+        horizontalLayout = new QHBoxLayout(layoutWidget1);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        ustawA1 = new QDoubleSpinBox(layoutWidget1);
+        ustawA1->setObjectName("ustawA1");
+        ustawA1->setMinimum(-99.000000000000000);
+        ustawA1->setSingleStep(0.500000000000000);
+        ustawA1->setValue(-0.400000000000000);
+
+        horizontalLayout->addWidget(ustawA1);
+
+        ustawA2 = new QDoubleSpinBox(layoutWidget1);
+        ustawA2->setObjectName("ustawA2");
+        ustawA2->setMinimum(-99.000000000000000);
+        ustawA2->setSingleStep(0.500000000000000);
+
+        horizontalLayout->addWidget(ustawA2);
+
+        ustawA3 = new QDoubleSpinBox(layoutWidget1);
+        ustawA3->setObjectName("ustawA3");
+        ustawA3->setMinimum(-99.000000000000000);
+        ustawA3->setMaximum(99.989999999999995);
+        ustawA3->setSingleStep(0.500000000000000);
+        ustawA3->setValue(0.000000000000000);
+
+        horizontalLayout->addWidget(ustawA3);
+
+        layoutWidget2 = new QWidget(centralwidget);
+        layoutWidget2->setObjectName("layoutWidget2");
+        layoutWidget2->setGeometry(QRect(10, 610, 235, 31));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget2);
+        horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
+        ustawB1 = new QDoubleSpinBox(layoutWidget2);
+        ustawB1->setObjectName("ustawB1");
+        ustawB1->setMinimum(-99.000000000000000);
+        ustawB1->setSingleStep(0.500000000000000);
+        ustawB1->setValue(0.600000000000000);
+
+        horizontalLayout_2->addWidget(ustawB1);
+
+        ustawB2 = new QDoubleSpinBox(layoutWidget2);
+        ustawB2->setObjectName("ustawB2");
+        ustawB2->setMinimum(-99.000000000000000);
+        ustawB2->setSingleStep(0.500000000000000);
+
+        horizontalLayout_2->addWidget(ustawB2);
+
+        ustawB3 = new QDoubleSpinBox(layoutWidget2);
+        ustawB3->setObjectName("ustawB3");
+        ustawB3->setMinimum(-99.000000000000000);
+        ustawB3->setSingleStep(0.500000000000000);
+
+        horizontalLayout_2->addWidget(ustawB3);
+
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
@@ -245,7 +302,6 @@ public:
         label_6->setText(QCoreApplication::translate("MainWindow", "Sygna\305\202", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "Td", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Ti", nullptr));
-        label_9->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
         label_10->setText(QCoreApplication::translate("MainWindow", "PID", nullptr));
         label_11->setText(QCoreApplication::translate("MainWindow", "K", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
@@ -254,6 +310,7 @@ public:
         label_15->setText(QCoreApplication::translate("MainWindow", "B", nullptr));
         label_16->setText(QCoreApplication::translate("MainWindow", "k", nullptr));
         checkBox->setText(QCoreApplication::translate("MainWindow", "z", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "Pami\304\231\304\207", nullptr));
     } // retranslateUi
 
 };

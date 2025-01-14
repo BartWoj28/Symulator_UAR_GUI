@@ -211,9 +211,9 @@
    <widget class="QLabel" name="label_12">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>440</y>
-      <width>63</width>
+      <x>20</x>
+      <y>510</y>
+      <width>21</width>
       <height>20</height>
      </rect>
     </property>
@@ -237,8 +237,8 @@
    <widget class="QLabel" name="label_15">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>510</y>
+      <x>20</x>
+      <y>580</y>
       <width>63</width>
       <height>20</height>
      </rect>
@@ -251,8 +251,8 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>440</y>
-      <width>63</width>
+      <y>470</y>
+      <width>31</width>
       <height>20</height>
      </rect>
     </property>
@@ -288,6 +288,9 @@
     <property name="decimals">
      <number>3</number>
     </property>
+    <property name="minimum">
+     <double>-99.000000000000000</double>
+    </property>
     <property name="singleStep">
      <double>0.500000000000000</double>
     </property>
@@ -308,7 +311,7 @@
      <double>1.000000000000000</double>
     </property>
     <property name="singleStep">
-     <double>0.500000000000000</double>
+     <double>0.100000000000000</double>
     </property>
     <property name="value">
      <double>0.500000000000000</double>
@@ -322,6 +325,9 @@
       <width>48</width>
       <height>29</height>
      </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
     </property>
     <property name="value">
      <number>1</number>
@@ -378,7 +384,7 @@
    <widget class="QSpinBox" name="ustawkarx">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>50</x>
       <y>470</y>
       <width>48</width>
       <height>29</height>
@@ -389,44 +395,6 @@
     </property>
     <property name="value">
      <number>1</number>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="ustawA1">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>470</y>
-      <width>67</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <double>-99.000000000000000</double>
-    </property>
-    <property name="singleStep">
-     <double>0.500000000000000</double>
-    </property>
-    <property name="value">
-     <double>-0.400000000000000</double>
-    </property>
-   </widget>
-   <widget class="QDoubleSpinBox" name="ustawB1">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>540</y>
-      <width>67</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <property name="minimum">
-     <double>-99.000000000000000</double>
-    </property>
-    <property name="singleStep">
-     <double>0.500000000000000</double>
-    </property>
-    <property name="value">
-     <double>0.600000000000000</double>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -456,8 +424,8 @@
    <widget class="QCheckBox" name="checkBox">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>540</y>
+      <x>170</x>
+      <y>470</y>
       <width>41</width>
       <height>26</height>
      </rect>
@@ -481,6 +449,102 @@
     <property name="text">
      <string>Pamięć</string>
     </property>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>540</y>
+      <width>235</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QDoubleSpinBox" name="ustawA1">
+       <property name="minimum">
+        <double>-99.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+       <property name="value">
+        <double>-0.400000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="ustawA2">
+       <property name="minimum">
+        <double>-99.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="ustawA3">
+       <property name="minimum">
+        <double>-99.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>99.989999999999995</double>
+       </property>
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>610</y>
+      <width>235</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QDoubleSpinBox" name="ustawB1">
+       <property name="minimum">
+        <double>-99.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.600000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="ustawB2">
+       <property name="minimum">
+        <double>-99.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDoubleSpinBox" name="ustawB3">
+       <property name="minimum">
+        <double>-99.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

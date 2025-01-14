@@ -53,11 +53,19 @@ private slots:
 
     void on_ustawB1_valueChanged(double arg1);
 
-    void on_pushButton_2_clicked();
+
 
     void on_checkBox_stateChanged(int arg1);
 
     void on_pushButton_3_clicked();
+
+    void on_ustawA2_valueChanged(double arg1);
+
+    void on_ustawA3_valueChanged(double arg1);
+
+    void on_ustawB2_valueChanged(double arg1);
+
+    void on_ustawB3_valueChanged(double arg1);
 
 private:
     Ui::MainWindow *ui;
@@ -81,8 +89,11 @@ private:
 
     bool working=false;
     QTimer* timer=nullptr;
-    int maks_y1=-1;
-    int maks_y2=-1;
+    double maks_y1=-1;
+    double maks_y2=-1;
     double maks_y3=-1;
+    double min_y1=0;
+    double min_y2=0;
+    double min_y3=0;
 };
 #endif // MAINWINDOW_H
