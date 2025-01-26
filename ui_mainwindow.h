@@ -36,12 +36,12 @@ public:
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout_9;
     QVBoxLayout *verticalLayout_15;
+    QVBoxLayout *verticalLayout_16;
     QHBoxLayout *horizontalLayout_8;
     QPushButton *pushButton;
     QPushButton *pushButton_3;
-    QVBoxLayout *verticalLayout_16;
-    QLabel *label_2;
     QSpinBox *spinBox;
+    QLabel *label_2;
     QFrame *frame;
     QHBoxLayout *horizontalLayout_7;
     QVBoxLayout *verticalLayout_12;
@@ -121,6 +121,8 @@ public:
         verticalLayout_15 = new QVBoxLayout();
         verticalLayout_15->setSpacing(3);
         verticalLayout_15->setObjectName("verticalLayout_15");
+        verticalLayout_16 = new QVBoxLayout();
+        verticalLayout_16->setObjectName("verticalLayout_16");
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setSpacing(4);
         horizontalLayout_8->setObjectName("horizontalLayout_8");
@@ -134,29 +136,24 @@ public:
 
         horizontalLayout_8->addWidget(pushButton_3);
 
-        verticalLayout_16 = new QVBoxLayout();
-        verticalLayout_16->setSpacing(0);
-        verticalLayout_16->setObjectName("verticalLayout_16");
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName("label_2");
-        label_2->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_16->addWidget(label_2);
-
         spinBox = new QSpinBox(centralwidget);
         spinBox->setObjectName("spinBox");
         spinBox->setMinimum(1);
         spinBox->setValue(1);
 
-        verticalLayout_16->addWidget(spinBox);
-
-        verticalLayout_16->setStretch(0, 1);
-        verticalLayout_16->setStretch(1, 3);
-
-        horizontalLayout_8->addLayout(verticalLayout_16);
+        horizontalLayout_8->addWidget(spinBox);
 
 
-        verticalLayout_15->addLayout(horizontalLayout_8);
+        verticalLayout_16->addLayout(horizontalLayout_8);
+
+        label_2 = new QLabel(centralwidget);
+        label_2->setObjectName("label_2");
+        label_2->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+
+        verticalLayout_16->addWidget(label_2);
+
+
+        verticalLayout_15->addLayout(verticalLayout_16);
 
         frame = new QFrame(centralwidget);
         frame->setObjectName("frame");
@@ -520,7 +517,6 @@ public:
 
         verticalLayout_15->addWidget(frame_3);
 
-        verticalLayout_15->setStretch(0, 2);
         verticalLayout_15->setStretch(1, 6);
         verticalLayout_15->setStretch(2, 6);
         verticalLayout_15->setStretch(3, 6);
