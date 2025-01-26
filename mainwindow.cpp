@@ -27,25 +27,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     sig();
 
-    series->setName("Uchyb");
-    series2->setName("Zadana");
-    series3->setName("Regulowana");
-    series4->setName("P");
-    series5->setName("I");
-    series6->setName("D");
-    series7->setName("sterowanie");
+    ustawNazwy();
 
-    chart1->addSeries(series);
-    chart2->addSeries(series2);
-    chart2->addSeries(series3);
-    chart3->addSeries(series4);
-    chart3->addSeries(series5);
-    chart3->addSeries(series6);
-    chart3->addSeries(series7);
+    dodajSerie();
 
-    chart1->createDefaultAxes();
-    chart2->createDefaultAxes();
-    chart3->createDefaultAxes();
+    utworzOsie();
 
     ui->ChartUchyb->setChart(chart1);
     ui->Chartwartosci->setChart(chart2);
@@ -99,44 +85,12 @@ void MainWindow::advance()
     if(sym.get_start()){
         sym.symulacja();
 
-        //chart1
+        dodacDoSerii();
 
-        series->append(sym.get_ite(),sym.get_u());
+        ustawMin();
+        ustawMax();
 
-        if(sym.get_u()>maks_y1) {maks_y1=sym.get_u();}
-        if(sym.get_u()<min_y1) {min_y1=sym.get_u();}
-        chart1->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
-        chart1->axes(Qt::Vertical).first()->setRange(min_y1*2,maks_y1*2);
-
-        //chart2
-        series2->append(sym.get_ite(),sym.get_Zad());
-        series3->append(sym.get_ite(),sym.get_Y());
-
-        chart2->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
-        if(sym.get_Zad()>maks_y2 && sym.get_Zad()>=sym.get_Y())maks_y2=sym.get_Zad();
-        else if(sym.get_Y()>=maks_y2) maks_y2=sym.get_Y();
-        if(sym.get_Zad()<min_y2 && sym.get_Zad()<=sym.get_Y())min_y2=sym.get_Zad();
-        else if(sym.get_Y()<=min_y2) min_y2=sym.get_Y();
-        chart2->axes(Qt::Vertical).first()->setRange(min_y2*2,maks_y2*2);
-
-
-        //chart3
-        series4->append(sym.get_ite(),sym.get_P());
-        series5->append(sym.get_ite(),sym.get_I());
-        series6->append(sym.get_ite(),sym.get_D());
-        series7->append(sym.get_ite(),sym.get_ster());
-
-
-        if(sym.get_P()>=sym.get_I()&&sym.get_P()>=sym.get_D()&&sym.get_ster()<=sym.get_P()&&sym.get_P()>=maks_y3)maks_y3=sym.get_P();
-        else if(sym.get_I()>=sym.get_D()&&sym.get_I()>=sym.get_ster()&&sym.get_I()>=maks_y3)maks_y3=sym.get_I();
-        else if(sym.get_D()>=sym.get_ster()&&sym.get_D()>=maks_y3)maks_y3=sym.get_D();
-        else if(sym.get_ster()>=maks_y3) maks_y3=sym.get_ster();
-        if(sym.get_P()<=sym.get_I()&&sym.get_P()<=sym.get_D()&&sym.get_ster()>=sym.get_P()&&sym.get_P()<=min_y3)min_y3=sym.get_P();
-        else if(sym.get_I()<=sym.get_D()&&sym.get_I()<=sym.get_ster()&&sym.get_I()<=min_y3)min_y3=sym.get_I();
-        else if(sym.get_D()<=sym.get_ster()&&sym.get_D()<=min_y3)min_y3=sym.get_D();
-        else if(sym.get_ster()<=min_y3) min_y3=sym.get_ster();
-        chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
-        chart3->axes(Qt::Vertical).first()->setRange(min_y3*2,maks_y3*2);
+        ustawZakres();
 
     }
 
@@ -199,7 +153,6 @@ void MainWindow::on_ustawB1_valueChanged(double arg1)
 void MainWindow::on_checkBox_stateChanged(int arg1)
 {
     sym.change_Z();
-    //cerr<<"changed";
 }
 
 
@@ -209,46 +162,18 @@ void MainWindow::on_pushButton_3_clicked()
     if(!working)timer->stop();
     sym.Setup();
     sym.reset();
-    delete series;
-    delete series2;
-    delete series3;
-    delete series4;
-    delete series5;
-    delete series6;
-    delete series7;
-    series = new QLineSeries();
-    series2 = new QLineSeries();
-    series3 = new QLineSeries();
-    series4 = new QLineSeries();
-    series5 = new QLineSeries();
-    series6 = new QLineSeries();
-    series7 = new QLineSeries();
-    series->setName("Uchyb");
-    series2->setName("Zadana");
-    series3->setName("Regulowana");
-    series4->setName("P");
-    series5->setName("I");
-    series6->setName("D");
-    series7->setName("sterowanie");
 
-    maks_y1=-1;
-    maks_y2=0;
-    maks_y3=0;
-    min_y1=0;
-    min_y2=0;
-    min_y3=0;
+    usunSerie();
 
-    chart1->addSeries(series);
-    chart2->addSeries(series2);
-    chart2->addSeries(series3);
-    chart3->addSeries(series4);
-    chart3->addSeries(series5);
-    chart3->addSeries(series6);
-    chart3->addSeries(series7);
+    utworzSerie();
 
-    chart1->createDefaultAxes();
-    chart2->createDefaultAxes();
-    chart3->createDefaultAxes();
+    ustawNazwy();
+
+    resetMaksMin();
+
+    dodajSerie();
+
+    utworzOsie();
 
 
     ui->ChartUchyb->setChart(chart1);
@@ -280,42 +205,36 @@ void MainWindow::on_ustawB3_valueChanged(double arg1)
     sym.set_b3(arg1);
 }
 
-void DodajSerie(QChart *Wykres,QLineSeries *Seria)
+void MainWindow::dodajSerie()
 {
-    Wykres->addSeries(Seria);
+    chart1->addSeries(series);
+    chart2->addSeries(series2);
+    chart2->addSeries(series3);
+    chart3->addSeries(series4);
+    chart3->addSeries(series5);
+    chart3->addSeries(series6);
+    chart3->addSeries(series7);
+}
+void MainWindow::usunSerie()
+{
+    delete series;
+    delete series2;
+    delete series3;
+    delete series4;
+    delete series5;
+    delete series6;
+    delete series7;
 }
 
-void Dodaj7Serii(QChart *Wykres1,QChart *Wykres2,QChart *Wykres3,QLineSeries *Seria1,QLineSeries *Seria2,QLineSeries *Seria3,QLineSeries *Seria4,QLineSeries *Seria5,QLineSeries *Seria6,QLineSeries *Seria7)
+void MainWindow::utworzSerie()
 {
-    DodajSerie(Wykres1,Seria1);
-    DodajSerie(Wykres2,Seria2);
-    DodajSerie(Wykres2,Seria3);
-    DodajSerie(Wykres3,Seria4);
-    DodajSerie(Wykres3,Seria5);
-    DodajSerie(Wykres3,Seria6);
-    DodajSerie(Wykres3,Seria7);
-}
-void usunSerie(QLineSeries *Seria)  {delete Seria;}
-void usun7Serii(QLineSeries *Seria1,QLineSeries *Seria2,QLineSeries *Seria3,QLineSeries *Seria4,QLineSeries *Seria5,QLineSeries *Seria6,QLineSeries *Seria7)
-{
-    usunSerie(Seria1);
-    usunSerie(Seria2);
-    usunSerie(Seria3);
-    usunSerie(Seria4);
-    usunSerie(Seria5);
-    usunSerie(Seria6);
-    usunSerie(Seria7);
-}
-void utworzSerie(QLineSeries *Seria)  {Seria=new QSplineSeries;}
-void utworz7Serii(QLineSeries *Seria1,QLineSeries *Seria2,QLineSeries *Seria3,QLineSeries *Seria4,QLineSeries *Seria5,QLineSeries *Seria6,QLineSeries *Seria7)
-{
-    utworzSerie(Seria1);
-    utworzSerie(Seria2);
-    utworzSerie(Seria3);
-    utworzSerie(Seria4);
-    utworzSerie(Seria5);
-    utworzSerie(Seria6);
-    utworzSerie(Seria7);
+    series = new QLineSeries();
+    series2 = new QLineSeries();
+    series3 = new QLineSeries();
+    series4 = new QLineSeries();
+    series5 = new QLineSeries();
+    series6 = new QLineSeries();
+    series7 = new QLineSeries();
 }
 void MainWindow::resetMaksMin()
 {
@@ -326,23 +245,50 @@ void MainWindow::resetMaksMin()
     min_y2=0;
     min_y3=0;
 }
-void utworz3Osie(QChart *Wykres1,QChart *Wykres2,QChart *Wykres3)
+void MainWindow::utworzOsie()
 {
-    Wykres1->createDefaultAxes();
-    Wykres2->createDefaultAxes();
-    Wykres3->createDefaultAxes();
+    chart1->createDefaultAxes();
+    chart2->createDefaultAxes();
+    chart3->createDefaultAxes();
 }
-void ustawNazwe(QLineSeries *Seria, QString nazwa)
+void MainWindow::ustawNazwy()
 {
-    Seria->setName(nazwa);
+    series->setName("Uchyb");
+    series2->setName("Zadana");
+    series3->setName("Regulowana");
+    series4->setName("P");
+    series5->setName("I");
+    series6->setName("D");
+    series7->setName("sterowanie");
 }
-void ustaw7Nazw(QLineSeries *Seria1, QString nazwa1,QLineSeries *Seria2, QString nazwa2,QLineSeries *Seria3, QString nazwa3,QLineSeries *Seria4, QString nazwa4,QLineSeries *Seria5, QString nazwa5,QLineSeries *Seria6, QString nazwa6,QLineSeries *Seria7, QString nazwa7)
+void MainWindow::ustawZakres()
 {
-    ustawNazwe(Seria1,nazwa1);
-    ustawNazwe(Seria2,nazwa2);
-    ustawNazwe(Seria3,nazwa3);
-    ustawNazwe(Seria4,nazwa4);
-    ustawNazwe(Seria5,nazwa5);
-    ustawNazwe(Seria6,nazwa6);
-    ustawNazwe(Seria7,nazwa7);
+    chart1->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+    chart1->axes(Qt::Vertical).first()->setRange(min_y1*2,maks_y1*2);
+    chart2->axes(Qt::Vertical).first()->setRange(min_y2*2,maks_y2*2);
+    chart2->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+    chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+    chart3->axes(Qt::Vertical).first()->setRange(min_y3*2,maks_y3*2);
+}
+void MainWindow::dodacDoSerii()
+{
+    series->append(sym.get_ite(),sym.get_u());
+    series2->append(sym.get_ite(),sym.get_Zad());
+    series3->append(sym.get_ite(),sym.get_Y());
+    series4->append(sym.get_ite(),sym.get_P());
+    series5->append(sym.get_ite(),sym.get_I());
+    series6->append(sym.get_ite(),sym.get_D());
+    series7->append(sym.get_ite(),sym.get_ster());
+}
+void MainWindow::ustawMin()
+{
+    min_y1=min(sym.get_u(),min_y1);
+    min_y2=min(sym.get_Zad(),min(min_y2,sym.get_Y()));
+    min_y3=min(min(min(sym.get_P(),sym.get_I()),min(sym.get_D(),sym.get_ster())),min_y3);
+}
+void MainWindow::ustawMax()
+{
+    maks_y1=max(sym.get_u(),maks_y1);
+    maks_y2=max(sym.get_Zad(),max(maks_y2,sym.get_Y()));
+    maks_y3=max(max(max(sym.get_P(),sym.get_I()),max(sym.get_D(),sym.get_ster())),maks_y3);
 }

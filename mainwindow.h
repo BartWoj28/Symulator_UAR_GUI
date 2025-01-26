@@ -67,7 +67,25 @@ private slots:
 
     void on_ustawB3_valueChanged(double arg1);
 
+    void dodajSerie();
+
     void resetMaksMin();
+
+    void usunSerie();
+
+    void utworzSerie();
+
+    void utworzOsie();
+
+    void ustawNazwy();
+
+    void ustawZakres();
+
+    void dodacDoSerii();
+
+    void ustawMin();
+
+    void ustawMax();
 
 private:
     Ui::MainWindow *ui;
