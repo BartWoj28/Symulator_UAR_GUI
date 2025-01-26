@@ -67,6 +67,8 @@ private slots:
 
     void on_ustawB3_valueChanged(double arg1);
 
+    void resetMaksMin();
+
 private:
     Ui::MainWindow *ui;
     Symulator sym;
