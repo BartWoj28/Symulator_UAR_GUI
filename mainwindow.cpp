@@ -280,3 +280,69 @@ void MainWindow::on_ustawB3_valueChanged(double arg1)
     sym.set_b3(arg1);
 }
 
+void DodajSerie(QChart *Wykres,QLineSeries *Seria)
+{
+    Wykres->addSeries(Seria);
+}
+
+void Dodaj7Serii(QChart *Wykres1,QChart *Wykres2,QChart *Wykres3,QLineSeries *Seria1,QLineSeries *Seria2,QLineSeries *Seria3,QLineSeries *Seria4,QLineSeries *Seria5,QLineSeries *Seria6,QLineSeries *Seria7)
+{
+    DodajSerie(Wykres1,Seria1);
+    DodajSerie(Wykres2,Seria2);
+    DodajSerie(Wykres2,Seria3);
+    DodajSerie(Wykres3,Seria4);
+    DodajSerie(Wykres3,Seria5);
+    DodajSerie(Wykres3,Seria6);
+    DodajSerie(Wykres3,Seria7);
+}
+void usunSerie(QLineSeries *Seria)  {delete Seria;}
+void usun7Serii(QLineSeries *Seria1,QLineSeries *Seria2,QLineSeries *Seria3,QLineSeries *Seria4,QLineSeries *Seria5,QLineSeries *Seria6,QLineSeries *Seria7)
+{
+    usunSerie(Seria1);
+    usunSerie(Seria2);
+    usunSerie(Seria3);
+    usunSerie(Seria4);
+    usunSerie(Seria5);
+    usunSerie(Seria6);
+    usunSerie(Seria7);
+}
+void utworzSerie(QLineSeries *Seria)  {Seria=new QSplineSeries;}
+void utworz7Serii(QLineSeries *Seria1,QLineSeries *Seria2,QLineSeries *Seria3,QLineSeries *Seria4,QLineSeries *Seria5,QLineSeries *Seria6,QLineSeries *Seria7)
+{
+    utworzSerie(Seria1);
+    utworzSerie(Seria2);
+    utworzSerie(Seria3);
+    utworzSerie(Seria4);
+    utworzSerie(Seria5);
+    utworzSerie(Seria6);
+    utworzSerie(Seria7);
+}
+void MainWindow::resetMaksMin()
+{
+    maks_y1=-1;
+    maks_y2=0;
+    maks_y3=0;
+    min_y1=0;
+    min_y2=0;
+    min_y3=0;
+}
+void utworz3Osie(QChart *Wykres1,QChart *Wykres2,QChart *Wykres3)
+{
+    Wykres1->createDefaultAxes();
+    Wykres2->createDefaultAxes();
+    Wykres3->createDefaultAxes();
+}
+void ustawNazwe(QLineSeries *Seria, QString nazwa)
+{
+    Seria->setName(nazwa);
+}
+void ustaw7Nazw(QLineSeries *Seria1, QString nazwa1,QLineSeries *Seria2, QString nazwa2,QLineSeries *Seria3, QString nazwa3,QLineSeries *Seria4, QString nazwa4,QLineSeries *Seria5, QString nazwa5,QLineSeries *Seria6, QString nazwa6,QLineSeries *Seria7, QString nazwa7)
+{
+    ustawNazwe(Seria1,nazwa1);
+    ustawNazwe(Seria2,nazwa2);
+    ustawNazwe(Seria3,nazwa3);
+    ustawNazwe(Seria4,nazwa4);
+    ustawNazwe(Seria5,nazwa5);
+    ustawNazwe(Seria6,nazwa6);
+    ustawNazwe(Seria7,nazwa7);
+}
