@@ -17,7 +17,7 @@ void raportBleduSekwencji(std::vector<double>& spodz, std::vector<double>& fakt)
 
 bool porownanieSekwencji(std::vector<double>& spodz, std::vector<double>& fakt)
 {
-	constexpr double TOL = 1e-3;	// tolerancja dla porównañ zmiennoprzecinkowych
+	constexpr double TOL = 1e-3;	// tolerancja dla porï¿½wnaï¿½ zmiennoprzecinkowych
 	bool result = fakt.size() == spodz.size();
 	for (int i = 0; result && i < fakt.size(); i++)
 		result = fabs(fakt[i] - spodz[i]) < TOL;
@@ -42,7 +42,7 @@ void test_RegulatorP_brakPobudzenia()
 		for (int i = 0; i < LICZ_ITER; i++)
 			faktSygWy[i] = instancjaTestowa.symuluj(sygWe[i]);
 
-		// Walidacja poprawnoœci i raport:
+		// Walidacja poprawnoï¿½ci i raport:
 		if (porownanieSekwencji(spodzSygWy, faktSygWy))
 			std::cerr << "OK!\n";
 		else
@@ -80,7 +80,7 @@ void test_RegulatorP_skokJednostkowy()
 		for (int i = 0; i < LICZ_ITER; i++)
 			faktSygWy[i] = instancjaTestowa.symuluj(sygWe[i]);
 
-		// Walidacja poprawnoœci i raport:
+		// Walidacja poprawnoï¿½ci i raport:
 		if (porownanieSekwencji(spodzSygWy, faktSygWy))
 			std::cerr << "OK!\n";
 		else
@@ -118,7 +118,7 @@ void test_RegulatorPI_skokJednostkowy_1()
 		for (int i = 0; i < LICZ_ITER; i++)
 			faktSygWy[i] = instancjaTestowa.symuluj(sygWe[i]);
 
-		// Walidacja poprawnoœci i raport:
+		// Walidacja poprawnoï¿½ci i raport:
 		if (porownanieSekwencji(spodzSygWy, faktSygWy))
 			std::cerr << "OK!\n";
 		else
@@ -156,7 +156,7 @@ void test_RegulatorPI_skokJednostkowy_2()
 		for (int i = 0; i < LICZ_ITER; i++)
 			faktSygWy[i] = instancjaTestowa.symuluj(sygWe[i]);
 
-		// Walidacja poprawnoœci i raport:
+		// Walidacja poprawnoï¿½ci i raport:
 		if (porownanieSekwencji(spodzSygWy, faktSygWy))
 			std::cerr << "OK!\n";
 		else
@@ -194,7 +194,7 @@ void test_RegulatorPID_skokJednostkowy()
 		for (int i = 0; i < LICZ_ITER; i++)
 			faktSygWy[i] = instancjaTestowa.symuluj(sygWe[i]);
 
-		// Walidacja poprawnoœci i raport:
+		// Walidacja poprawnoï¿½ci i raport:
 		if (porownanieSekwencji(spodzSygWy, faktSygWy))
 			std::cerr << "OK!\n";
 		else
@@ -208,3 +208,43 @@ void test_RegulatorPID_skokJednostkowy()
 		std::cerr << "INTERUPTED! (niespodziwany wyjatek)\n";
 	}
 }
+
+double RegulatorPID::get_k() { return k; }
+
+double RegulatorPID::get_ei() { return ei; }
+
+double RegulatorPID::get_Ti() { return Ti; }
+
+double RegulatorPID::get_ej() { return ej; }
+
+double RegulatorPID::get_Td() { return Td; }
+
+double RegulatorPID::get_eip() { return eip; }
+
+void RegulatorPID::set_k(double km) { k = km; }
+
+void RegulatorPID::set_ARX(ModelARX *ARXm) { ARX = ARXm; }
+
+void RegulatorPID::set_Ti(double Tim) { Ti = Tim; }
+
+void RegulatorPID::set_ei(double eim) { set_eip(ei); dod_ej(eim); ei = eim; }
+
+void RegulatorPID::dod_ej(double ejm) { ej += ejm; }
+
+void RegulatorPID::set_Td(double Tdm) { Td = Tdm; }
+
+void RegulatorPID::set_eip(double eipm) { eip = eipm; }
+
+double RegulatorPID::P() { return (k * ei); }
+
+double RegulatorPID::I() { if (Ti != 0) return ((1 / Ti) * ej); else return 0; }
+
+double RegulatorPID::D() { return Td * (ei - eip); }
+
+double RegulatorPID::PID() { return P() + I() + D(); }
+
+void RegulatorPID::reset() { ej = 0; eip = 0;}
+
+RegulatorPID::RegulatorPID(double km, double Tim, double Tdm) { ei = 0; ej = 0; eip = 0; k = km; Ti = Tim; Td = Tdm; }
+
+double RegulatorPID::symuluj(double eim) { set_ei(eim); return PID(); }

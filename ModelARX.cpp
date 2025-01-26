@@ -2,6 +2,34 @@
 #include "RegulatorPID.h"
 #include <random>
 
+void ModelARX::Set_A(vector<double> a) {A = a; }
+
+void ModelARX::Set_A1(double a){A[0]=a;}
+
+void ModelARX::Set_A2(double a){A[1]=a;}
+
+void ModelARX::Set_A3(double a){A[2]=a;}
+
+void ModelARX::Set_B1(double b){B[0]=b;}
+
+void ModelARX::Set_B2(double b){B[1]=b;}
+
+void ModelARX::Set_B3(double b){B[2]=b;}
+
+void ModelARX::Add_A(double a){A.push_back(a);}
+
+void ModelARX::Set_B(vector<double> b) {B = b; }
+
+void ModelARX::Add_B(double b){B.push_back(b);}
+
+void ModelARX::Set_Y(double y) { Y = y; }
+
+void ModelARX::Set_K(unsigned int k) { K = k; }
+
+void ModelARX::Set_PID(RegulatorPID *pid) { PID = pid; }
+
+void ModelARX::Set_Z(bool z) { Z = z; }
+
 void ModelARX::CheckSize() {
 
 	if (A.size() > kol_y.size()) {
@@ -60,6 +88,8 @@ void ModelARX::CheckSize() {
 
 }
 
+double ModelARX::Get_Y() { return Y; }
+
 double ModelARX::symuluj(double e)
 {
 	CheckSize();
@@ -108,6 +138,10 @@ ModelARX::ModelARX(vector<double> a, vector<double> b, unsigned int k, double y)
 
 
 }
+
+void ModelARX::change_Z(){Z=!Z;}
+
+void ModelARX::clean(){kol_y.clear();kol_u.clear();buf_op.clear();}
 
 //Funkcje pomocnicze dla testów:
 

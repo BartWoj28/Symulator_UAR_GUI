@@ -21,29 +21,29 @@ class ModelARX
 	bool Z = false;
 	friend RegulatorPID;
 public:
-    void Set_A(vector<double>a) {A = a; }
-    void Set_A1(double a){A[0]=a;}
-    void Set_A2(double a){A[1]=a;}
-    void Set_A3(double a){A[2]=a;}
+    void Set_A(vector<double>a);
+    void Set_A1(double a);
+    void Set_A2(double a);
+    void Set_A3(double a);
 
-    void Set_B1(double b){B[0]=b;}
-    void Set_B2(double b){B[1]=b;}
-    void Set_B3(double b){B[2]=b;}
+    void Set_B1(double b);
+    void Set_B2(double b);
+    void Set_B3(double b);
 
-    void Add_A(double a){A.push_back(a);}
-    void Set_B(vector<double>b) {B = b; }
-    void Add_B(double b){B.push_back(b);}
-	void Set_Y(double y) { Y = y; }
-	void Set_K(unsigned int k) { K = k; }
-	void Set_PID(RegulatorPID* pid) { PID = pid; }
-	void Set_Z(bool z) { Z = z; }
+    void Add_A(double a);
+    void Set_B(vector<double>b);
+    void Add_B(double b);
+    void Set_Y(double y);
+    void Set_K(unsigned int k);
+    void Set_PID(RegulatorPID* pid);
+    void Set_Z(bool z);
 	void CheckSize();
-	double Get_Y() { return Y; }
+    double Get_Y();
 	double symuluj(double e);
 	ModelARX(vector<double>, vector<double>, unsigned int, double);
     ModelARX(){};
-    void change_Z(){Z=!Z;}
-    void clean(){kol_y.clear();kol_u.clear();buf_op.clear();}
+    void change_Z();
+    void clean();
 };
 
 void test_ModelARX_brakPobudzenia();
