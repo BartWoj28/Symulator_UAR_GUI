@@ -80,9 +80,9 @@ double ModelARX::symuluj(double e)
 		y_s -= A[i] * kol_y[i];
 	}
 
-	if (Z == true)y_s += normal(rng);
+    if (Z == true)y_s += normal(rng)*y_s;
     //cerr<<y_s<<" ";
-    //cerr<<normal(rng);
+    //cerr<<normal(rng)<<" ";
 
     kol_y.push_front(y_s);
     kol_y.pop_back();

@@ -78,13 +78,13 @@ private:
     QChart* chart2=new QChart();
     QChart* chart3=new QChart();
 
-    QSplineSeries* series = new QSplineSeries();
-    QSplineSeries* series2 = new QSplineSeries();
-    QSplineSeries* series3 = new QSplineSeries();
-    QSplineSeries* series4 = new QSplineSeries();
-    QSplineSeries* series5 = new QSplineSeries();
-    QSplineSeries* series6 = new QSplineSeries();
-    QSplineSeries* series7 = new QSplineSeries();
+    QLineSeries* series = new QLineSeries();
+    QLineSeries* series2 = new QLineSeries();
+    QLineSeries* series3 = new QLineSeries();
+    QLineSeries* series4 = new QLineSeries();
+    QLineSeries* series5 = new QLineSeries();
+    QLineSeries* series6 = new QLineSeries();
+    QLineSeries* series7 = new QLineSeries();
 
 
     bool working=false;

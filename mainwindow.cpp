@@ -107,7 +107,6 @@ void MainWindow::advance()
         if(sym.get_u()<min_y1) {min_y1=sym.get_u();}
         chart1->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
         chart1->axes(Qt::Vertical).first()->setRange(min_y1*2,maks_y1*2);
-        //ui->ChartUchyb->setChart(chart1);
 
         //chart2
         series2->append(sym.get_ite(),sym.get_Zad());
@@ -119,7 +118,7 @@ void MainWindow::advance()
         if(sym.get_Zad()<min_y2 && sym.get_Zad()<=sym.get_Y())min_y2=sym.get_Zad();
         else if(sym.get_Y()<=min_y2) min_y2=sym.get_Y();
         chart2->axes(Qt::Vertical).first()->setRange(min_y2*2,maks_y2*2);
-        //ui->Chartwartosci->setChart(chart2);
+
 
         //chart3
         series4->append(sym.get_ite(),sym.get_P());
@@ -138,7 +137,6 @@ void MainWindow::advance()
         else if(sym.get_ster()<=min_y3) min_y3=sym.get_ster();
         chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
         chart3->axes(Qt::Vertical).first()->setRange(min_y3*2,maks_y3*2);
-        //ui->ChartSterowanie->setChart(chart3);
 
     }
 
@@ -218,13 +216,13 @@ void MainWindow::on_pushButton_3_clicked()
     delete series5;
     delete series6;
     delete series7;
-    series = new QSplineSeries();
-    series2 = new QSplineSeries();
-    series3 = new QSplineSeries();
-    series4 = new QSplineSeries();
-    series5 = new QSplineSeries();
-    series6 = new QSplineSeries();
-    series7 = new QSplineSeries();
+    series = new QLineSeries();
+    series2 = new QLineSeries();
+    series3 = new QLineSeries();
+    series4 = new QLineSeries();
+    series5 = new QLineSeries();
+    series6 = new QLineSeries();
+    series7 = new QLineSeries();
     series->setName("Uchyb");
     series2->setName("Zadana");
     series3->setName("Regulowana");
