@@ -1,5 +1,6 @@
 #include "ModelARX.h"
 #include "RegulatorPID.h"
+#include <cassert>
 #include <random>
 
 void ModelARX::Set_A(vector<double> a) {A = a; }
@@ -98,7 +99,7 @@ double ModelARX::symuluj(double e)
 	double y_s = 0;
 	random_device srng; mt19937 rng;
 	rng.seed(srng());
-    normal_distribution<double> normal(0.01, 0.01);
+
 
 	for (size_t i = 0; i < B.size(); i++) {
 
@@ -109,8 +110,11 @@ double ModelARX::symuluj(double e)
 
 		y_s -= A[i] * kol_y[i];
 	}
-
-    if (Z == true)y_s += normal(rng)*y_s;
+    if(odch!=0.0)
+    {
+        normal_distribution<double> normal(0.0, odch);
+        y_s += normal(rng);
+    }
     //cerr<<y_s<<" ";
     //cerr<<normal(rng)<<" ";
 
@@ -142,6 +146,21 @@ ModelARX::ModelARX(vector<double> a, vector<double> b, unsigned int k, double y)
 void ModelARX::change_Z(){Z=!Z;}
 
 void ModelARX::clean(){kol_y.clear();kol_u.clear();buf_op.clear();}
+
+
+double ModelARX::Get_A(int numer)
+{
+    assert(numer>=0 && numer<A.size());
+        return A[numer];
+}
+
+double ModelARX::Get_B(int numer)
+{
+    assert(numer>=0 && numer<B.size());
+        return B[numer];
+}
+
+
 
 //Funkcje pomocnicze dla testów:
 

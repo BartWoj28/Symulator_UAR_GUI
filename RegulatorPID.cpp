@@ -227,7 +227,7 @@ void RegulatorPID::set_ARX(ModelARX *ARXm) { ARX = ARXm; }
 
 void RegulatorPID::set_Ti(double Tim) { Ti = Tim; }
 
-void RegulatorPID::set_ei(double eim) { set_eip(ei); dod_ej(eim); ei = eim; }
+void RegulatorPID::set_ei(double eim) { set_eip(ei); dod_ej(eim);set_ej2(eim) ;ei = eim;}
 
 void RegulatorPID::dod_ej(double ejm) { ej += ejm; }
 
@@ -237,14 +237,20 @@ void RegulatorPID::set_eip(double eipm) { eip = eipm; }
 
 double RegulatorPID::P() { return (k * ei); }
 
-double RegulatorPID::I() { if (Ti != 0) return ((1 / Ti) * ej); else return 0; }
+double RegulatorPID::I() { if (Ti == 0) return 0; else if(tryb==true)return ((1 / Ti) * ej); else return ej2; }
 
 double RegulatorPID::D() { return Td * (ei - eip); }
 
 double RegulatorPID::PID() { return P() + I() + D(); }
 
-void RegulatorPID::reset() { ej = 0; eip = 0;}
+void RegulatorPID::reset() { ej = 0; eip = 0; ej2=0;}
 
-RegulatorPID::RegulatorPID(double km, double Tim, double Tdm) { ei = 0; ej = 0; eip = 0; k = km; Ti = Tim; Td = Tdm; }
+RegulatorPID::RegulatorPID(double km, double Tim, double Tdm) { ei = 0; ej = 0; eip = 0; k = km; Ti = Tim; Td = Tdm; ej2=0; tryb=true;}
 
 double RegulatorPID::symuluj(double eim) { set_ei(eim); return PID(); }
+
+void RegulatorPID::set_ej2(double ej) {if(Ti!=0) ej2+= ej*1/Ti;}
+
+void RegulatorPID::set_tryb(bool t){tryb=t;}
+
+

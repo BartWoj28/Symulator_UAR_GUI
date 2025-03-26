@@ -17,6 +17,7 @@ class ModelARX
 	deque<double>kol_u = {};
 	deque<double>buf_op = {};
 	double Y = 0.0;
+    double odch=0.0;
 	RegulatorPID* PID = nullptr;
 	bool Z = false;
 	friend RegulatorPID;
@@ -44,6 +45,12 @@ public:
     ModelARX(){};
     void change_Z();
     void clean();
+    double Get_A(int numer);
+    double Get_B(int numer);
+    int Get_k(){return K;};
+    bool Get_Z(){return Z;};
+    void Set_Odchyl(double od){odch=od;};
+    double Get_Odch(){return odch;}
 };
 
 void test_ModelARX_brakPobudzenia();

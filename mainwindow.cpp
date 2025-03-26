@@ -6,27 +6,29 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow),timer(new QTimer(this))
 {
     ui->setupUi(this);
-
     sym.Setup();
     connect(timer,SIGNAL(timeout()),this,SLOT(advance()));
-    on_spinBox_valueChanged(ui->spinBox->value());
-
+    on_Spbox_inter_valueChanged(ui->Spbox_inter->value());
+    on_Spbox_Stala_valueChanged(ui->Spbox_Stala->value());
     on_ustawA_valueChanged(ui->ustawA->value());
     on_ustawP_valueChanged(ui->ustawP->value());
     on_ustawT_valueChanged(ui->ustawT->value());
     on_ustawKpid_valueChanged(ui->ustawKpid->value());
     on_ustawTi_valueChanged(ui->ustawTi->value());
     on_ustawTd_valueChanged(ui->ustawTd->value());
-    on_ustawkarx_valueChanged(ui->ustawkarx->value());
-    on_ustawA1_valueChanged(ui->ustawA1->value());
-    on_ustawA2_valueChanged(ui->ustawA2->value());
-    on_ustawA3_valueChanged(ui->ustawA3->value());
-    on_ustawB1_valueChanged(ui->ustawB1->value());
-    on_ustawB2_valueChanged(ui->ustawB2->value());
-    on_ustawB3_valueChanged(ui->ustawB3->value());
+    sym.set_a1(-0.4);
+    sym.set_a2(0.2);
+    sym.set_a3(0.0);
+    sym.set_b1(0.6);
+    sym.set_b2(0.3);
+    sym.set_b3(0.0);
+    sym.set_arx_k(1);
+
+
 
     sig();
-
+    edit_ARX = new Dialog_ARX;
+    connect(edit_ARX,SIGNAL(finished(int)),this,SLOT(Pobiezdane_ARX()));
     ustawNazwy();
 
     dodajSerie();
@@ -41,6 +43,9 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete edit_ARX;
+    usunSerie();
+    usun_charty();
 }
 
 
@@ -85,8 +90,20 @@ void MainWindow::advance()
     if(sym.get_start()){
         sym.symulacja();
 
+        if(sym.get_ite()*czas>50*czas)
+        {
+            x=(sym.get_ite()-40)*czas;
+            series->remove(0);
+            series2->remove(0);
+            series3->remove(0);
+            series4->remove(0);
+            series5->remove(0);
+            series6->remove(0);
+            series7->remove(0);
+        }
         dodacDoSerii();
 
+        resetMaksMin();
         ustawMin();
         ustawMax();
 
@@ -132,37 +149,13 @@ void MainWindow::on_ustawTd_valueChanged(double arg1)
 }
 
 
-void MainWindow::on_ustawkarx_valueChanged(int arg1)
-{
-    sym.set_arx_k(arg1);
-}
-
-
-void MainWindow::on_ustawA1_valueChanged(double arg1)
-{
-    sym.set_a1(arg1);
-}
-
-
-void MainWindow::on_ustawB1_valueChanged(double arg1)
-{
-    sym.set_b1(arg1);
-}
-
-
-void MainWindow::on_checkBox_stateChanged(int arg1)
-{
-    sym.change_Z();
-}
-
-
 void MainWindow::on_pushButton_3_clicked()
 {
     if(working)on_pushButton_clicked();
     if(!working)timer->stop();
     sym.Setup();
     sym.reset();
-
+    x=0;
     usunSerie();
 
     utworzSerie();
@@ -182,28 +175,6 @@ void MainWindow::on_pushButton_3_clicked()
 }
 
 
-void MainWindow::on_ustawA2_valueChanged(double arg1)
-{
-    sym.set_a2(arg1);
-}
-
-
-void MainWindow::on_ustawA3_valueChanged(double arg1)
-{
-    sym.set_a3(arg1);
-}
-
-
-void MainWindow::on_ustawB2_valueChanged(double arg1)
-{
-    sym.set_b2(arg1);
-}
-
-
-void MainWindow::on_ustawB3_valueChanged(double arg1)
-{
-    sym.set_b3(arg1);
-}
 
 void MainWindow::dodajSerie()
 {
@@ -239,8 +210,8 @@ void MainWindow::utworzSerie()
 void MainWindow::resetMaksMin()
 {
     maks_y1=-1;
-    maks_y2=0;
-    maks_y3=0;
+    maks_y2=-1;
+    maks_y3=-1;
     min_y1=0;
     min_y2=0;
     min_y3=0;
@@ -250,6 +221,13 @@ void MainWindow::utworzOsie()
     chart1->createDefaultAxes();
     chart2->createDefaultAxes();
     chart3->createDefaultAxes();
+
+    chart1->axes(Qt::Horizontal).first()->setTitleText("Czas [s]");
+    chart1->axes(Qt::Vertical).first()->setTitleText("Odp");
+    chart2->axes(Qt::Horizontal).first()->setTitleText("Czas [s]");
+    chart2->axes(Qt::Vertical).first()->setTitleText("Odp");
+    chart3->axes(Qt::Horizontal).first()->setTitleText("Czas [s]");
+    chart3->axes(Qt::Vertical).first()->setTitleText("Odp");
 }
 void MainWindow::ustawNazwy()
 {
@@ -260,35 +238,117 @@ void MainWindow::ustawNazwy()
     series5->setName("I");
     series6->setName("D");
     series7->setName("sterowanie");
+
+
 }
 void MainWindow::ustawZakres()
 {
-    chart1->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+    chart1->axes(Qt::Horizontal).first()->setRange(x,sym.get_ite()*czas);
     chart1->axes(Qt::Vertical).first()->setRange(min_y1*2,maks_y1*2);
     chart2->axes(Qt::Vertical).first()->setRange(min_y2*2,maks_y2*2);
-    chart2->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
-    chart3->axes(Qt::Horizontal).first()->setRange(0,sym.get_ite());
+    chart2->axes(Qt::Horizontal).first()->setRange(x,sym.get_ite()*czas);
+    chart3->axes(Qt::Horizontal).first()->setRange(x,sym.get_ite()*czas);
     chart3->axes(Qt::Vertical).first()->setRange(min_y3*2,maks_y3*2);
 }
 void MainWindow::dodacDoSerii()
 {
-    series->append(sym.get_ite(),sym.get_u());
-    series2->append(sym.get_ite(),sym.get_Zad());
-    series3->append(sym.get_ite(),sym.get_Y());
-    series4->append(sym.get_ite(),sym.get_P());
-    series5->append(sym.get_ite(),sym.get_I());
-    series6->append(sym.get_ite(),sym.get_D());
-    series7->append(sym.get_ite(),sym.get_ster());
+    series->append(sym.get_ite()*czas,sym.get_u());
+    series2->append(sym.get_ite()*czas,sym.get_Zad());
+    series3->append(sym.get_ite()*czas,sym.get_Y());
+    series4->append(sym.get_ite()*czas,sym.get_P());
+    series5->append(sym.get_ite()*czas,sym.get_I());
+    series6->append(sym.get_ite()*czas,sym.get_D());
+    series7->append(sym.get_ite()*czas,sym.get_ster());
 }
 void MainWindow::ustawMin()
 {
-    min_y1=min(sym.get_u(),min_y1);
-    min_y2=min(sym.get_Zad(),min(min_y2,sym.get_Y()));
-    min_y3=min(min(min(sym.get_P(),sym.get_I()),min(sym.get_D(),sym.get_ster())),min_y3);
+
+    ZakresWykresu(min_y1,series);
+    ZakresWykresu(min_y2,series2);
+    ZakresWykresu(min_y2,series3);
+    ZakresWykresu(min_y3,series4);
+    ZakresWykresu(min_y3,series5);
+    ZakresWykresu(min_y3,series6);
+    ZakresWykresu(min_y3,series7);
 }
 void MainWindow::ustawMax()
 {
-    maks_y1=max(sym.get_u(),maks_y1);
-    maks_y2=max(sym.get_Zad(),max(maks_y2,sym.get_Y()));
-    maks_y3=max(max(max(sym.get_P(),sym.get_I()),max(sym.get_D(),sym.get_ster())),maks_y3);
+
+    ZakresWykresu(maks_y1,series,false);
+    ZakresWykresu(maks_y2,series2,false);
+    ZakresWykresu(maks_y2,series3,false);
+    ZakresWykresu(maks_y3,series4,false);
+    ZakresWykresu(maks_y3,series5,false);
+    ZakresWykresu(maks_y3,series6,false);
+    ZakresWykresu(maks_y3,series7,false);
 }
+void MainWindow::ZakresWykresu(double &y, QLineSeries * &seria, bool czy_min)
+{
+    int j=min(49,sym.get_ite());
+    if(czy_min)
+    {
+        for(int i = 0; i<j; i++)
+        {y=min(seria->at(i).y(),y);}
+    }
+    else
+    {
+        for(int i = 0; i<j; i++)
+        {y=max(seria->at(i).y(),y);}
+    }
+}
+
+void MainWindow:: usun_charty()
+{
+    delete chart1;
+    delete chart2;
+    delete chart3;
+}
+
+void MainWindow::on_Spbox_inter_valueChanged(double arg1)
+{
+    timer->setInterval(arg1*1000);
+    czas=ui->Spbox_inter->value();
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+
+    edit_ARX->Set_A1(sym.Get_A_ARX(0));
+    edit_ARX->Set_A2(sym.Get_A_ARX(1));
+    edit_ARX->Set_A3(sym.Get_A_ARX(2));
+    edit_ARX->Set_B1(sym.Get_B_ARX(0));
+    edit_ARX->Set_B2(sym.Get_B_ARX(1));
+    edit_ARX->Set_B3(sym.Get_B_ARX(2));
+    edit_ARX->Set_K(sym.Get_K_ARX());
+    edit_ARX->Set_Odchyl(sym.Get_odchyl_Arx());
+    edit_ARX->show();
+}
+
+
+void MainWindow::Pobiezdane_ARX()
+{
+
+    sym.set_a1(edit_ARX->a1);
+    sym.set_a2(edit_ARX->a2);
+    sym.set_a3(edit_ARX->a3);
+    sym.set_b1(edit_ARX->b1);
+    sym.set_b2(edit_ARX->b2);
+    sym.set_b3(edit_ARX->b3);
+    sym.set_arx_k(edit_ARX->K);
+    sym.Set_Odch(edit_ARX->odchyl);
+
+
+}
+
+void MainWindow::on_checkBox_stateChanged(int arg1)
+{
+    sym.set_tryb(ui->checkBox->isChecked());
+}
+
+
+void MainWindow::on_Spbox_Stala_valueChanged(double arg1)
+{
+    sym.set_stala(arg1);
+}
+

@@ -9,6 +9,8 @@
 #include <QtGui>
 #include <QtWidgets>
 #include <QTimer>
+#include "dialog_arx.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -47,25 +49,8 @@ private slots:
 
     void on_ustawTd_valueChanged(double arg1);
 
-    void on_ustawkarx_valueChanged(int arg1);
-
-    void on_ustawA1_valueChanged(double arg1);
-
-    void on_ustawB1_valueChanged(double arg1);
-
-
-
-    void on_checkBox_stateChanged(int arg1);
-
     void on_pushButton_3_clicked();
 
-    void on_ustawA2_valueChanged(double arg1);
-
-    void on_ustawA3_valueChanged(double arg1);
-
-    void on_ustawB2_valueChanged(double arg1);
-
-    void on_ustawB3_valueChanged(double arg1);
 
     void dodajSerie();
 
@@ -86,6 +71,20 @@ private slots:
     void ustawMin();
 
     void ustawMax();
+
+    void on_pushButton_2_clicked();
+
+    void usun_charty();
+
+    void on_Spbox_inter_valueChanged(double arg1);
+
+    void Pobiezdane_ARX();
+
+    void ZakresWykresu(double &y, QLineSeries * &seria, bool=true);
+
+    void on_checkBox_stateChanged(int arg1);
+
+    void on_Spbox_Stala_valueChanged(double arg1);
 
 private:
     Ui::MainWindow *ui;
@@ -115,5 +114,8 @@ private:
     double min_y1=0;
     double min_y2=0;
     double min_y3=0;
+    Dialog_ARX* edit_ARX=new Dialog_ARX;
+    int x=0;
+    double czas=0.0;
 };
 #endif // MAINWINDOW_H

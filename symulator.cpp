@@ -91,4 +91,16 @@ void Symulator::Setup(){
 
 void Symulator::change_Z(){arx.change_Z();};
 
+double Symulator::Get_A_ARX(int numer)
+{
+   return arx.Get_A(numer);
+}
 
+double Symulator::Get_B_ARX(int numer)
+{
+   return arx.Get_B(numer);
+}
+
+bool Symulator::Get_Z_ARX(){return arx.Get_Z();};
+bool Symulator::Get_K_ARX(){return arx.Get_k();};
+void Symulator::set_stala(double s){gen1.set_A(s);gen2.set_S(s);gen3.set_S(s);};

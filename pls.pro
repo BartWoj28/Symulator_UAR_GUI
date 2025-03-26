@@ -11,6 +11,7 @@ CONFIG += c++17
 SOURCES += \
     ModelARX.cpp \
     RegulatorPID.cpp \
+    dialog_arx.cpp \
     main.cpp \
     mainwindow.cpp \
     symulator.cpp
@@ -21,6 +22,7 @@ HEADERS += \
     ModelARX.h \
     RegulatorPID.h \
     WartoscZadana.h \
+    dialog_arx.h \
     mainwindow.h \
     symulator.h
     RegulatorPID.h
@@ -28,6 +30,7 @@ HEADERS += \
     ModelARX.h
 
 FORMS += \
+    dialog_arx.ui \
     mainwindow.ui
 
 # Default rules for deployment.

@@ -7,16 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>1189</width>
-    <height>668</height>
+    <height>673</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>SUAR</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="2,7">
+   <layout class="QHBoxLayout" name="horizontalLayout_9" stretch="0,0">
+    <property name="spacing">
+     <number>2</number>
+    </property>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_15" stretch="0,6,6,6">
+     <layout class="QVBoxLayout" name="verticalLayout_15" stretch="1,2,2,1">
       <property name="spacing">
        <number>3</number>
       </property>
@@ -42,12 +45,12 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox">
+           <widget class="QDoubleSpinBox" name="Spbox_inter">
             <property name="minimum">
-             <number>1</number>
+             <double>0.100000000000000</double>
             </property>
-            <property name="value">
-             <number>1</number>
+            <property name="singleStep">
+             <double>0.100000000000000</double>
             </property>
            </widget>
           </item>
@@ -90,7 +93,7 @@
           <number>3</number>
          </property>
          <item>
-          <layout class="QVBoxLayout" name="verticalLayout_12" stretch="1,4">
+          <layout class="QVBoxLayout" name="verticalLayout_12" stretch="1,2,4">
            <item>
             <widget class="QLabel" name="label">
              <property name="text">
@@ -99,67 +102,31 @@
             </widget>
            </item>
            <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="label_12">
+               <property name="text">
+                <string>S</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QDoubleSpinBox" name="Spbox_Stala">
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
             <layout class="QGridLayout" name="gridLayout">
              <property name="verticalSpacing">
               <number>9</number>
              </property>
-             <item row="0" column="0">
-              <layout class="QVBoxLayout" name="verticalLayout_11">
-               <item>
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>A</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDoubleSpinBox" name="ustawA">
-                 <property name="decimals">
-                  <number>3</number>
-                 </property>
-                 <property name="minimum">
-                  <double>-99.000000000000000</double>
-                 </property>
-                 <property name="singleStep">
-                  <double>0.500000000000000</double>
-                 </property>
-                 <property name="value">
-                  <double>1.000000000000000</double>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item row="0" column="1">
-              <layout class="QVBoxLayout" name="verticalLayout_10">
-               <item>
-                <widget class="QLabel" name="label_4">
-                 <property name="text">
-                  <string>P</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDoubleSpinBox" name="ustawP">
-                 <property name="maximum">
-                  <double>1.000000000000000</double>
-                 </property>
-                 <property name="singleStep">
-                  <double>0.100000000000000</double>
-                 </property>
-                 <property name="value">
-                  <double>0.500000000000000</double>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
              <item row="1" column="0">
               <layout class="QVBoxLayout" name="verticalLayout_9">
                <item>
@@ -213,6 +180,63 @@
                    <string>Sinusoida</string>
                   </property>
                  </item>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="0">
+              <layout class="QVBoxLayout" name="verticalLayout_11">
+               <item>
+                <widget class="QLabel" name="label_3">
+                 <property name="text">
+                  <string>A</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDoubleSpinBox" name="ustawA">
+                 <property name="decimals">
+                  <number>3</number>
+                 </property>
+                 <property name="minimum">
+                  <double>-99.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.500000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="1">
+              <layout class="QVBoxLayout" name="verticalLayout_10">
+               <item>
+                <widget class="QLabel" name="label_4">
+                 <property name="text">
+                  <string>P</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDoubleSpinBox" name="ustawP">
+                 <property name="maximum">
+                  <double>1.000000000000000</double>
+                 </property>
+                 <property name="singleStep">
+                  <double>0.100000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>0.500000000000000</double>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -283,33 +307,6 @@
                </item>
               </layout>
              </item>
-             <item row="0" column="1">
-              <layout class="QVBoxLayout" name="verticalLayout_5">
-               <property name="spacing">
-                <number>4</number>
-               </property>
-               <item>
-                <widget class="QLabel" name="label_8">
-                 <property name="text">
-                  <string>Ti</string>
-                 </property>
-                 <property name="alignment">
-                  <set>Qt::AlignCenter</set>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDoubleSpinBox" name="ustawTi">
-                 <property name="singleStep">
-                  <double>0.500000000000000</double>
-                 </property>
-                 <property name="value">
-                  <double>5.000000000000000</double>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
              <item row="1" column="0">
               <layout class="QVBoxLayout" name="verticalLayout_6">
                <property name="spacing">
@@ -332,6 +329,43 @@
                  </property>
                  <property name="value">
                   <double>0.200000000000000</double>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="0" column="1">
+              <layout class="QVBoxLayout" name="verticalLayout_5">
+               <property name="spacing">
+                <number>4</number>
+               </property>
+               <item>
+                <widget class="QLabel" name="label_8">
+                 <property name="text">
+                  <string>Ti</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkBox">
+                 <property name="text">
+                  <string>Przed sumą</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QDoubleSpinBox" name="ustawTi">
+                 <property name="singleStep">
+                  <double>0.500000000000000</double>
+                 </property>
+                 <property name="value">
+                  <double>5.000000000000000</double>
                  </property>
                 </widget>
                </item>
@@ -390,203 +424,23 @@
           <number>3</number>
          </property>
          <item row="0" column="0">
-          <layout class="QVBoxLayout" name="verticalLayout_14">
+          <layout class="QVBoxLayout" name="verticalLayout_14" stretch="1,2">
            <item>
             <widget class="QLabel" name="label_14">
              <property name="text">
               <string>ARX</string>
              </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
             </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="1,2,2,2,1">
-             <property name="spacing">
-              <number>4</number>
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="text">
+              <string>Modyfikuj</string>
              </property>
-             <item>
-              <spacer name="horizontalSpacer_5">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,2">
-               <item>
-                <widget class="QLabel" name="label_16">
-                 <property name="text">
-                  <string>k</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QSpinBox" name="ustawkarx">
-                 <property name="minimum">
-                  <number>1</number>
-                 </property>
-                 <property name="value">
-                  <number>1</number>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_3">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox">
-               <property name="text">
-                <string>z</string>
-               </property>
-               <property name="tristate">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_2">
-             <property name="spacing">
-              <number>3</number>
-             </property>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="1">
-               <item>
-                <widget class="QLabel" name="label_12">
-                 <property name="text">
-                  <string>A</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout">
-               <item>
-                <widget class="QDoubleSpinBox" name="ustawA1">
-                 <property name="minimum">
-                  <double>-99.000000000000000</double>
-                 </property>
-                 <property name="singleStep">
-                  <double>0.500000000000000</double>
-                 </property>
-                 <property name="value">
-                  <double>-0.400000000000000</double>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDoubleSpinBox" name="ustawA2">
-                 <property name="minimum">
-                  <double>-99.000000000000000</double>
-                 </property>
-                 <property name="singleStep">
-                  <double>0.500000000000000</double>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDoubleSpinBox" name="ustawA3">
-                 <property name="minimum">
-                  <double>-99.000000000000000</double>
-                 </property>
-                 <property name="maximum">
-                  <double>99.989999999999995</double>
-                 </property>
-                 <property name="singleStep">
-                  <double>0.500000000000000</double>
-                 </property>
-                 <property name="value">
-                  <double>0.000000000000000</double>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1">
-               <item>
-                <widget class="QLabel" name="label_15">
-                 <property name="text">
-                  <string>B</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_2">
-               <item>
-                <widget class="QDoubleSpinBox" name="ustawB1">
-                 <property name="minimum">
-                  <double>-99.000000000000000</double>
-                 </property>
-                 <property name="singleStep">
-                  <double>0.500000000000000</double>
-                 </property>
-                 <property name="value">
-                  <double>0.600000000000000</double>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDoubleSpinBox" name="ustawB2">
-                 <property name="minimum">
-                  <double>-99.000000000000000</double>
-                 </property>
-                 <property name="singleStep">
-                  <double>0.500000000000000</double>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QDoubleSpinBox" name="ustawB3">
-                 <property name="minimum">
-                  <double>-99.000000000000000</double>
-                 </property>
-                 <property name="singleStep">
-                  <double>0.500000000000000</double>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </item>
-            </layout>
+            </widget>
            </item>
           </layout>
          </item>
@@ -596,18 +450,25 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1">
       <property name="spacing">
-       <number>0</number>
+       <number>2</number>
       </property>
-      <item>
-       <widget class="QChartView" name="ChartUchyb"/>
-      </item>
       <item>
        <widget class="QChartView" name="Chartwartosci"/>
       </item>
       <item>
-       <widget class="QChartView" name="ChartSterowanie"/>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <property name="spacing">
+         <number>2</number>
+        </property>
+        <item>
+         <widget class="QChartView" name="ChartUchyb"/>
+        </item>
+        <item>
+         <widget class="QChartView" name="ChartSterowanie"/>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>

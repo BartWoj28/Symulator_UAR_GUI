@@ -77,15 +77,7 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "on_ustawKpid_valueChanged",
     "on_ustawTi_valueChanged",
     "on_ustawTd_valueChanged",
-    "on_ustawkarx_valueChanged",
-    "on_ustawA1_valueChanged",
-    "on_ustawB1_valueChanged",
-    "on_checkBox_stateChanged",
     "on_pushButton_3_clicked",
-    "on_ustawA2_valueChanged",
-    "on_ustawA3_valueChanged",
-    "on_ustawB2_valueChanged",
-    "on_ustawB3_valueChanged",
     "dodajSerie",
     "resetMaksMin",
     "usunSerie",
@@ -95,11 +87,22 @@ static constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers:
     "ustawZakres",
     "dodacDoSerii",
     "ustawMin",
-    "ustawMax"
+    "ustawMax",
+    "on_pushButton_2_clicked",
+    "usun_charty",
+    "on_Spbox_inter_valueChanged",
+    "Pobiezdane_ARX",
+    "ZakresWykresu",
+    "double&",
+    "y",
+    "QLineSeries*&",
+    "seria",
+    "on_checkBox_stateChanged",
+    "on_Spbox_Stala_valueChanged"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[66];
+    uint offsetsAndSizes[72];
     char stringdata0[11];
     char stringdata1[31];
     char stringdata2[1];
@@ -114,25 +117,28 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata11[26];
     char stringdata12[24];
     char stringdata13[24];
-    char stringdata14[26];
-    char stringdata15[24];
-    char stringdata16[24];
-    char stringdata17[25];
-    char stringdata18[24];
-    char stringdata19[24];
-    char stringdata20[24];
-    char stringdata21[24];
-    char stringdata22[24];
-    char stringdata23[11];
-    char stringdata24[13];
-    char stringdata25[10];
+    char stringdata14[24];
+    char stringdata15[11];
+    char stringdata16[13];
+    char stringdata17[10];
+    char stringdata18[12];
+    char stringdata19[11];
+    char stringdata20[11];
+    char stringdata21[12];
+    char stringdata22[13];
+    char stringdata23[9];
+    char stringdata24[9];
+    char stringdata25[24];
     char stringdata26[12];
-    char stringdata27[11];
-    char stringdata28[11];
-    char stringdata29[12];
-    char stringdata30[13];
-    char stringdata31[9];
-    char stringdata32[9];
+    char stringdata27[28];
+    char stringdata28[15];
+    char stringdata29[14];
+    char stringdata30[8];
+    char stringdata31[2];
+    char stringdata32[14];
+    char stringdata33[6];
+    char stringdata34[25];
+    char stringdata35[28];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -152,25 +158,28 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(195, 25),  // "on_ustawKpid_valueChanged"
         QT_MOC_LITERAL(221, 23),  // "on_ustawTi_valueChanged"
         QT_MOC_LITERAL(245, 23),  // "on_ustawTd_valueChanged"
-        QT_MOC_LITERAL(269, 25),  // "on_ustawkarx_valueChanged"
-        QT_MOC_LITERAL(295, 23),  // "on_ustawA1_valueChanged"
-        QT_MOC_LITERAL(319, 23),  // "on_ustawB1_valueChanged"
-        QT_MOC_LITERAL(343, 24),  // "on_checkBox_stateChanged"
-        QT_MOC_LITERAL(368, 23),  // "on_pushButton_3_clicked"
-        QT_MOC_LITERAL(392, 23),  // "on_ustawA2_valueChanged"
-        QT_MOC_LITERAL(416, 23),  // "on_ustawA3_valueChanged"
-        QT_MOC_LITERAL(440, 23),  // "on_ustawB2_valueChanged"
-        QT_MOC_LITERAL(464, 23),  // "on_ustawB3_valueChanged"
-        QT_MOC_LITERAL(488, 10),  // "dodajSerie"
-        QT_MOC_LITERAL(499, 12),  // "resetMaksMin"
-        QT_MOC_LITERAL(512, 9),  // "usunSerie"
-        QT_MOC_LITERAL(522, 11),  // "utworzSerie"
-        QT_MOC_LITERAL(534, 10),  // "utworzOsie"
-        QT_MOC_LITERAL(545, 10),  // "ustawNazwy"
-        QT_MOC_LITERAL(556, 11),  // "ustawZakres"
-        QT_MOC_LITERAL(568, 12),  // "dodacDoSerii"
-        QT_MOC_LITERAL(581, 8),  // "ustawMin"
-        QT_MOC_LITERAL(590, 8)   // "ustawMax"
+        QT_MOC_LITERAL(269, 23),  // "on_pushButton_3_clicked"
+        QT_MOC_LITERAL(293, 10),  // "dodajSerie"
+        QT_MOC_LITERAL(304, 12),  // "resetMaksMin"
+        QT_MOC_LITERAL(317, 9),  // "usunSerie"
+        QT_MOC_LITERAL(327, 11),  // "utworzSerie"
+        QT_MOC_LITERAL(339, 10),  // "utworzOsie"
+        QT_MOC_LITERAL(350, 10),  // "ustawNazwy"
+        QT_MOC_LITERAL(361, 11),  // "ustawZakres"
+        QT_MOC_LITERAL(373, 12),  // "dodacDoSerii"
+        QT_MOC_LITERAL(386, 8),  // "ustawMin"
+        QT_MOC_LITERAL(395, 8),  // "ustawMax"
+        QT_MOC_LITERAL(404, 23),  // "on_pushButton_2_clicked"
+        QT_MOC_LITERAL(428, 11),  // "usun_charty"
+        QT_MOC_LITERAL(440, 27),  // "on_Spbox_inter_valueChanged"
+        QT_MOC_LITERAL(468, 14),  // "Pobiezdane_ARX"
+        QT_MOC_LITERAL(483, 13),  // "ZakresWykresu"
+        QT_MOC_LITERAL(497, 7),  // "double&"
+        QT_MOC_LITERAL(505, 1),  // "y"
+        QT_MOC_LITERAL(507, 13),  // "QLineSeries*&"
+        QT_MOC_LITERAL(521, 5),  // "seria"
+        QT_MOC_LITERAL(527, 24),  // "on_checkBox_stateChanged"
+        QT_MOC_LITERAL(552, 27)   // "on_Spbox_Stala_valueChanged"
     },
     "MainWindow",
     "on_comboBox_currentTextChanged",
@@ -186,15 +195,7 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "on_ustawKpid_valueChanged",
     "on_ustawTi_valueChanged",
     "on_ustawTd_valueChanged",
-    "on_ustawkarx_valueChanged",
-    "on_ustawA1_valueChanged",
-    "on_ustawB1_valueChanged",
-    "on_checkBox_stateChanged",
     "on_pushButton_3_clicked",
-    "on_ustawA2_valueChanged",
-    "on_ustawA3_valueChanged",
-    "on_ustawB2_valueChanged",
-    "on_ustawB3_valueChanged",
     "dodajSerie",
     "resetMaksMin",
     "usunSerie",
@@ -204,7 +205,18 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "ustawZakres",
     "dodacDoSerii",
     "ustawMin",
-    "ustawMax"
+    "ustawMax",
+    "on_pushButton_2_clicked",
+    "usun_charty",
+    "on_Spbox_inter_valueChanged",
+    "Pobiezdane_ARX",
+    "ZakresWykresu",
+    "double&",
+    "y",
+    "QLineSeries*&",
+    "seria",
+    "on_checkBox_stateChanged",
+    "on_Spbox_Stala_valueChanged"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -235,25 +247,25 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       11,    1,  212,    2, 0x08,   14 /* Private */,
       12,    1,  215,    2, 0x08,   16 /* Private */,
       13,    1,  218,    2, 0x08,   18 /* Private */,
-      14,    1,  221,    2, 0x08,   20 /* Private */,
-      15,    1,  224,    2, 0x08,   22 /* Private */,
-      16,    1,  227,    2, 0x08,   24 /* Private */,
-      17,    1,  230,    2, 0x08,   26 /* Private */,
-      18,    0,  233,    2, 0x08,   28 /* Private */,
-      19,    1,  234,    2, 0x08,   29 /* Private */,
-      20,    1,  237,    2, 0x08,   31 /* Private */,
-      21,    1,  240,    2, 0x08,   33 /* Private */,
-      22,    1,  243,    2, 0x08,   35 /* Private */,
-      23,    0,  246,    2, 0x08,   37 /* Private */,
-      24,    0,  247,    2, 0x08,   38 /* Private */,
-      25,    0,  248,    2, 0x08,   39 /* Private */,
-      26,    0,  249,    2, 0x08,   40 /* Private */,
-      27,    0,  250,    2, 0x08,   41 /* Private */,
-      28,    0,  251,    2, 0x08,   42 /* Private */,
-      29,    0,  252,    2, 0x08,   43 /* Private */,
-      30,    0,  253,    2, 0x08,   44 /* Private */,
-      31,    0,  254,    2, 0x08,   45 /* Private */,
-      32,    0,  255,    2, 0x08,   46 /* Private */,
+      14,    0,  221,    2, 0x08,   20 /* Private */,
+      15,    0,  222,    2, 0x08,   21 /* Private */,
+      16,    0,  223,    2, 0x08,   22 /* Private */,
+      17,    0,  224,    2, 0x08,   23 /* Private */,
+      18,    0,  225,    2, 0x08,   24 /* Private */,
+      19,    0,  226,    2, 0x08,   25 /* Private */,
+      20,    0,  227,    2, 0x08,   26 /* Private */,
+      21,    0,  228,    2, 0x08,   27 /* Private */,
+      22,    0,  229,    2, 0x08,   28 /* Private */,
+      23,    0,  230,    2, 0x08,   29 /* Private */,
+      24,    0,  231,    2, 0x08,   30 /* Private */,
+      25,    0,  232,    2, 0x08,   31 /* Private */,
+      26,    0,  233,    2, 0x08,   32 /* Private */,
+      27,    1,  234,    2, 0x08,   33 /* Private */,
+      28,    0,  237,    2, 0x08,   35 /* Private */,
+      29,    3,  238,    2, 0x08,   36 /* Private */,
+      29,    2,  245,    2, 0x28,   40 /* Private | MethodCloned */,
+      34,    1,  250,    2, 0x08,   43 /* Private */,
+      35,    1,  253,    2, 0x08,   45 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString,    3,
@@ -267,25 +279,25 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void, QMetaType::Double,    3,
     QMetaType::Void, QMetaType::Double,    3,
     QMetaType::Void, QMetaType::Double,    3,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Double,    3,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 30, 0x80000000 | 32, QMetaType::Bool,   31,   33,    2,
+    QMetaType::Void, 0x80000000 | 30, 0x80000000 | 32,   31,   33,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Double,    3,
-    QMetaType::Void, QMetaType::Double,    3,
-    QMetaType::Void, QMetaType::Int,    3,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Double,    3,
-    QMetaType::Void, QMetaType::Double,    3,
-    QMetaType::Void, QMetaType::Double,    3,
-    QMetaType::Void, QMetaType::Double,    3,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
 
        0        // eod
 };
@@ -329,32 +341,8 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_ustawTd_valueChanged'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<double, std::false_type>,
-        // method 'on_ustawkarx_valueChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
-        // method 'on_ustawA1_valueChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<double, std::false_type>,
-        // method 'on_ustawB1_valueChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<double, std::false_type>,
-        // method 'on_checkBox_stateChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_pushButton_3_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_ustawA2_valueChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<double, std::false_type>,
-        // method 'on_ustawA3_valueChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<double, std::false_type>,
-        // method 'on_ustawB2_valueChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<double, std::false_type>,
-        // method 'on_ustawB3_valueChanged'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<double, std::false_type>,
         // method 'dodajSerie'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'resetMaksMin'
@@ -374,7 +362,31 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'ustawMin'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'ustawMax'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pushButton_2_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'usun_charty'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_Spbox_inter_valueChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<double, std::false_type>,
+        // method 'Pobiezdane_ARX'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'ZakresWykresu'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<double &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QLineSeries * &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        // method 'ZakresWykresu'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<double &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QLineSeries * &, std::false_type>,
+        // method 'on_checkBox_stateChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        // method 'on_Spbox_Stala_valueChanged'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<double, std::false_type>
     >,
     nullptr
 } };
@@ -396,25 +408,25 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->on_ustawKpid_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
         case 9: _t->on_ustawTi_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
         case 10: _t->on_ustawTd_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 11: _t->on_ustawkarx_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 12: _t->on_ustawA1_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 13: _t->on_ustawB1_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 14: _t->on_checkBox_stateChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 15: _t->on_pushButton_3_clicked(); break;
-        case 16: _t->on_ustawA2_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 17: _t->on_ustawA3_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 18: _t->on_ustawB2_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 19: _t->on_ustawB3_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 20: _t->dodajSerie(); break;
-        case 21: _t->resetMaksMin(); break;
-        case 22: _t->usunSerie(); break;
-        case 23: _t->utworzSerie(); break;
-        case 24: _t->utworzOsie(); break;
-        case 25: _t->ustawNazwy(); break;
-        case 26: _t->ustawZakres(); break;
-        case 27: _t->dodacDoSerii(); break;
-        case 28: _t->ustawMin(); break;
-        case 29: _t->ustawMax(); break;
+        case 11: _t->on_pushButton_3_clicked(); break;
+        case 12: _t->dodajSerie(); break;
+        case 13: _t->resetMaksMin(); break;
+        case 14: _t->usunSerie(); break;
+        case 15: _t->utworzSerie(); break;
+        case 16: _t->utworzOsie(); break;
+        case 17: _t->ustawNazwy(); break;
+        case 18: _t->ustawZakres(); break;
+        case 19: _t->dodacDoSerii(); break;
+        case 20: _t->ustawMin(); break;
+        case 21: _t->ustawMax(); break;
+        case 22: _t->on_pushButton_2_clicked(); break;
+        case 23: _t->usun_charty(); break;
+        case 24: _t->on_Spbox_inter_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
+        case 25: _t->Pobiezdane_ARX(); break;
+        case 26: _t->ZakresWykresu((*reinterpret_cast< std::add_pointer_t<double&>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QLineSeries*&>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[3]))); break;
+        case 27: _t->ZakresWykresu((*reinterpret_cast< std::add_pointer_t<double&>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QLineSeries*&>>(_a[2]))); break;
+        case 28: _t->on_checkBox_stateChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 29: _t->on_Spbox_Stala_valueChanged((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
         default: ;
         }
     }

@@ -3,7 +3,7 @@
 #include "WartoscZadana.h"
 #include "RegulatorPID.h"
 #include "ModelARX.h"
-
+#include <cassert>
 
 
 enum class signal {
@@ -43,6 +43,7 @@ public:
     void set_pid_Td(double pid_Td);
     void set_syg(signal s);
     void set_zad(double a);
+    void set_stala(double s);
     void set_T(int t);
     void set_p(double p);
     int get_K_pid();
@@ -62,6 +63,14 @@ public:
     void change_z();
     void Setup();
     void change_Z();
+    double Get_A_ARX(int numer);
+    double Get_B_ARX(int numer);
+    bool Get_Z_ARX();
+    bool Get_K_ARX();
+    void Set_Z_ARX(bool z){arx.Set_Z(z);};
+    void Set_Odch(double odch){arx.Set_Odchyl(odch);}
+    void set_tryb(bool t){pid.set_tryb(t);}
+    double Get_odchyl_Arx(){return arx.Get_Odch();}
 };
 
 

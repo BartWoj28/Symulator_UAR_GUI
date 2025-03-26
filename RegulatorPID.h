@@ -22,6 +22,8 @@ private:
 	double ej;
 	double Td;
 	double eip;
+    double ej2;
+    bool tryb;
 	ModelARX* ARX = nullptr;
 	friend ModelARX;
 public:
@@ -36,6 +38,7 @@ public:
     void set_Ti(double Tim);
     void set_ei(double eim);
     void dod_ej(double ejm);
+    void set_ej2(double ejm);
     void set_Td(double Tdm);
     void set_eip(double eipm);
     double P();
@@ -45,6 +48,7 @@ public:
     void reset();
     RegulatorPID(double km = 0, double Tim = 0, double Tdm = 0);
     double symuluj(double eim);
+    void set_tryb(bool t);
 };
 
 void raportBleduSekwencji(std::vector<double>& spodz, std::vector<double>& fakt);
