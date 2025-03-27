@@ -25,6 +25,7 @@ class Ui_Dialog_ARX
 {
 public:
     QVBoxLayout *verticalLayout_4;
+    QSpacerItem *verticalSpacer_3;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *label;
@@ -49,6 +50,7 @@ public:
     QSpinBox *spinBox_k;
     QLabel *label_4;
     QDoubleSpinBox *Spbox_odchyl;
+    QSpacerItem *verticalSpacer_4;
 
     void setupUi(QDialog *Dialog_ARX)
     {
@@ -59,6 +61,10 @@ public:
         verticalLayout_4 = new QVBoxLayout(Dialog_ARX);
         verticalLayout_4->setSpacing(3);
         verticalLayout_4->setObjectName("verticalLayout_4");
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_3);
+
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(1);
         verticalLayout->setObjectName("verticalLayout");
@@ -194,7 +200,8 @@ public:
 
         Spbox_odchyl = new QDoubleSpinBox(Dialog_ARX);
         Spbox_odchyl->setObjectName("Spbox_odchyl");
-        Spbox_odchyl->setMaximum(0.100000000000000);
+        Spbox_odchyl->setMaximum(0.090000000000000);
+        Spbox_odchyl->setSingleStep(0.010000000000000);
 
         horizontalLayout_6->addWidget(Spbox_odchyl);
 
@@ -204,11 +211,17 @@ public:
 
         verticalLayout_4->addLayout(horizontalLayout_6);
 
-        verticalLayout_4->setStretch(0, 2);
-        verticalLayout_4->setStretch(1, 1);
-        verticalLayout_4->setStretch(2, 2);
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_4);
+
+        verticalLayout_4->setStretch(0, 1);
+        verticalLayout_4->setStretch(1, 2);
+        verticalLayout_4->setStretch(2, 1);
         verticalLayout_4->setStretch(3, 2);
         verticalLayout_4->setStretch(4, 2);
+        verticalLayout_4->setStretch(5, 2);
+        verticalLayout_4->setStretch(6, 1);
 
         retranslateUi(Dialog_ARX);
 

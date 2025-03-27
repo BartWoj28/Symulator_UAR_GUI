@@ -122,8 +122,9 @@ public:
 
         Spbox_inter = new QDoubleSpinBox(centralwidget);
         Spbox_inter->setObjectName("Spbox_inter");
-        Spbox_inter->setMinimum(0.100000000000000);
-        Spbox_inter->setSingleStep(0.100000000000000);
+        Spbox_inter->setMinimum(0.050000000000000);
+        Spbox_inter->setSingleStep(0.050000000000000);
+        Spbox_inter->setValue(0.100000000000000);
 
         horizontalLayout_8->addWidget(Spbox_inter);
 
@@ -164,6 +165,7 @@ public:
 
         Spbox_Stala = new QDoubleSpinBox(frame);
         Spbox_Stala->setObjectName("Spbox_Stala");
+        Spbox_Stala->setSingleStep(0.100000000000000);
         Spbox_Stala->setValue(1.000000000000000);
 
         horizontalLayout_2->addWidget(Spbox_Stala);
@@ -397,9 +399,9 @@ public:
         verticalLayout_15->addWidget(frame_3);
 
         verticalLayout_15->setStretch(0, 1);
-        verticalLayout_15->setStretch(1, 2);
-        verticalLayout_15->setStretch(2, 2);
-        verticalLayout_15->setStretch(3, 1);
+        verticalLayout_15->setStretch(1, 3);
+        verticalLayout_15->setStretch(2, 3);
+        verticalLayout_15->setStretch(3, 2);
 
         horizontalLayout_9->addLayout(verticalLayout_15);
 
@@ -427,8 +429,8 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_3);
 
-        verticalLayout->setStretch(0, 1);
-        verticalLayout->setStretch(1, 1);
+        verticalLayout->setStretch(0, 3);
+        verticalLayout->setStretch(1, 2);
 
         horizontalLayout_9->addLayout(verticalLayout);
 

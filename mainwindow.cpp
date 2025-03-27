@@ -51,6 +51,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
 {
+    Q_UNUSED(arg1);
     sig();
 }
 
@@ -82,7 +83,7 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_spinBox_valueChanged(int arg1)
 {
-    timer->setInterval(arg1*1000);
+    timer->setInterval(arg1*1000.0);
 }
 
 void MainWindow::advance()
@@ -90,9 +91,9 @@ void MainWindow::advance()
     if(sym.get_start()){
         sym.symulacja();
 
-        if(sym.get_ite()*czas>50*czas)
+        if(sym.get_ite()>42.0)
         {
-            x=(sym.get_ite()-40)*czas;
+            x=(sym.get_ite()-38.0);
             series->remove(0);
             series2->remove(0);
             series3->remove(0);
@@ -209,12 +210,12 @@ void MainWindow::utworzSerie()
 }
 void MainWindow::resetMaksMin()
 {
-    maks_y1=-1;
-    maks_y2=-1;
-    maks_y3=-1;
-    min_y1=0;
-    min_y2=0;
-    min_y3=0;
+    maks_y1=0.00001;
+    maks_y2=0.00001;
+    maks_y3=0.00001;
+    min_y1=-0.00001;
+    min_y2=-0.00001;
+    min_y3=-0.00001;
 }
 void MainWindow::utworzOsie()
 {
@@ -222,11 +223,11 @@ void MainWindow::utworzOsie()
     chart2->createDefaultAxes();
     chart3->createDefaultAxes();
 
-    chart1->axes(Qt::Horizontal).first()->setTitleText("Czas [s]");
+    chart1->axes(Qt::Horizontal).first()->setTitleText("iteracja");
     chart1->axes(Qt::Vertical).first()->setTitleText("Odp");
-    chart2->axes(Qt::Horizontal).first()->setTitleText("Czas [s]");
+    chart2->axes(Qt::Horizontal).first()->setTitleText("iteracja");
     chart2->axes(Qt::Vertical).first()->setTitleText("Odp");
-    chart3->axes(Qt::Horizontal).first()->setTitleText("Czas [s]");
+    chart3->axes(Qt::Horizontal).first()->setTitleText("iteracja");
     chart3->axes(Qt::Vertical).first()->setTitleText("Odp");
 }
 void MainWindow::ustawNazwy()
@@ -243,26 +244,27 @@ void MainWindow::ustawNazwy()
 }
 void MainWindow::ustawZakres()
 {
-    chart1->axes(Qt::Horizontal).first()->setRange(x,sym.get_ite()*czas);
-    chart1->axes(Qt::Vertical).first()->setRange(min_y1*2,maks_y1*2);
-    chart2->axes(Qt::Vertical).first()->setRange(min_y2*2,maks_y2*2);
-    chart2->axes(Qt::Horizontal).first()->setRange(x,sym.get_ite()*czas);
-    chart3->axes(Qt::Horizontal).first()->setRange(x,sym.get_ite()*czas);
-    chart3->axes(Qt::Vertical).first()->setRange(min_y3*2,maks_y3*2);
+    chart1->axes(Qt::Horizontal).first()->setRange(x,sym.get_ite());
+    chart1->axes(Qt::Vertical).first()->setRange(min_y1-abs(0.2*min_y1),maks_y1*1.5);
+    chart2->axes(Qt::Vertical).first()->setRange(min_y2-abs(0.2*min_y2),maks_y2*1.5);
+    chart2->axes(Qt::Horizontal).first()->setRange(x,sym.get_ite());
+    chart3->axes(Qt::Horizontal).first()->setRange(x,sym.get_ite());
+    chart3->axes(Qt::Vertical).first()->setRange(min_y3 - abs(0.2*min_y3),maks_y3*1.5);
 }
 void MainWindow::dodacDoSerii()
 {
-    series->append(sym.get_ite()*czas,sym.get_u());
-    series2->append(sym.get_ite()*czas,sym.get_Zad());
-    series3->append(sym.get_ite()*czas,sym.get_Y());
-    series4->append(sym.get_ite()*czas,sym.get_P());
-    series5->append(sym.get_ite()*czas,sym.get_I());
-    series6->append(sym.get_ite()*czas,sym.get_D());
-    series7->append(sym.get_ite()*czas,sym.get_ster());
+    series->append(sym.get_ite(),sym.get_u());
+    series2->append(sym.get_ite(),sym.get_Zad());
+    series3->append(sym.get_ite(),sym.get_Y());
+    series4->append(sym.get_ite(),sym.get_P());
+    series5->append(sym.get_ite(),sym.get_I());
+    series6->append(sym.get_ite(),sym.get_D());
+    series7->append(sym.get_ite(),sym.get_ster());
 }
 void MainWindow::ustawMin()
 {
-
+    if(min_y1<0.0001 && min_y1>-0.0001)
+        min_y1=-0.0001;
     ZakresWykresu(min_y1,series);
     ZakresWykresu(min_y2,series2);
     ZakresWykresu(min_y2,series3);
@@ -273,7 +275,8 @@ void MainWindow::ustawMin()
 }
 void MainWindow::ustawMax()
 {
-
+    if(maks_y1<0.0001 && maks_y1>-0.0001)
+    maks_y1=0.0001;
     ZakresWykresu(maks_y1,series,false);
     ZakresWykresu(maks_y2,series2,false);
     ZakresWykresu(maks_y2,series3,false);
@@ -284,7 +287,7 @@ void MainWindow::ustawMax()
 }
 void MainWindow::ZakresWykresu(double &y, QLineSeries * &seria, bool czy_min)
 {
-    int j=min(49,sym.get_ite());
+    int j=min(38,sym.get_ite());
     if(czy_min)
     {
         for(int i = 0; i<j; i++)
