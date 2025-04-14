@@ -19,7 +19,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,2,1,2,2,2,1">
+  <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,2,1,2,2,2,1,2,1">
    <property name="spacing">
     <number>3</number>
    </property>
@@ -221,6 +221,26 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_5">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QPushButton" name="buttonAccept">
+     <property name="text">
+      <string>Akceptuj</string>
+     </property>
+    </widget>
    </item>
    <item>
     <spacer name="verticalSpacer_4">

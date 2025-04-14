@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     sym.Setup();
     connect(timer,SIGNAL(timeout()),this,SLOT(advance()));
     on_Spbox_inter_valueChanged(ui->Spbox_inter->value());
-    on_Spbox_Stala_valueChanged(ui->Spbox_Stala->value());
+    on_Spbox_Stala_valueChanged(ui->ustaw_S->value());
     on_ustawA_valueChanged(ui->ustawA->value());
     on_ustawP_valueChanged(ui->ustawP->value());
     on_ustawT_valueChanged(ui->ustawT->value());
@@ -28,7 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     sig();
     edit_ARX = new Dialog_ARX;
-    connect(edit_ARX,SIGNAL(finished(int)),this,SLOT(Pobiezdane_ARX()));
+    connect(edit_ARX,SIGNAL(accepted()),this,SLOT(Pobiezdane_ARX()));
     ustawNazwy();
 
     dodajSerie();
@@ -48,42 +48,16 @@ MainWindow::~MainWindow()
     usun_charty();
 }
 
-
-void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
-{
-    Q_UNUSED(arg1);
-    sig();
-}
-
 void MainWindow::sig()
 {
     signal newsig;
-    string text=ui->comboBox->currentText().toStdString();
+    string text=ui->Sygnal->currentText().toStdString();
     if(text=="Pros")newsig=signal::syg_prost;
     else if(text=="Sinusoida")newsig=signal::syg_sin;
     else newsig=signal::sk_jed;
     sym.set_syg(newsig);
 
 
-}
-
-void MainWindow::on_pushButton_4_clicked()
-{
-    sym.reset();
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-    sym.StartStop();
-    working=!working;
-    if(!working)timer->stop();else timer->start();
-}
-
-
-void MainWindow::on_spinBox_valueChanged(int arg1)
-{
-    timer->setInterval(arg1*1000.0);
 }
 
 void MainWindow::advance()
@@ -148,34 +122,6 @@ void MainWindow::on_ustawTd_valueChanged(double arg1)
 {
     sym.set_pid_Td(arg1);
 }
-
-
-void MainWindow::on_pushButton_3_clicked()
-{
-    if(working)on_pushButton_clicked();
-    if(!working)timer->stop();
-    sym.Setup();
-    sym.reset();
-    x=0;
-    usunSerie();
-
-    utworzSerie();
-
-    ustawNazwy();
-
-    resetMaksMin();
-
-    dodajSerie();
-
-    utworzOsie();
-
-
-    ui->ChartUchyb->setChart(chart1);
-    ui->Chartwartosci->setChart(chart2);
-    ui->ChartSterowanie->setChart(chart3);
-}
-
-
 
 void MainWindow::dodajSerie()
 {
@@ -310,24 +256,7 @@ void MainWindow:: usun_charty()
 void MainWindow::on_Spbox_inter_valueChanged(double arg1)
 {
     timer->setInterval(arg1*1000);
-    czas=ui->Spbox_inter->value();
 }
-
-
-void MainWindow::on_pushButton_2_clicked()
-{
-
-    edit_ARX->Set_A1(sym.Get_A_ARX(0));
-    edit_ARX->Set_A2(sym.Get_A_ARX(1));
-    edit_ARX->Set_A3(sym.Get_A_ARX(2));
-    edit_ARX->Set_B1(sym.Get_B_ARX(0));
-    edit_ARX->Set_B2(sym.Get_B_ARX(1));
-    edit_ARX->Set_B3(sym.Get_B_ARX(2));
-    edit_ARX->Set_K(sym.Get_K_ARX());
-    edit_ARX->Set_Odchyl(sym.Get_odchyl_Arx());
-    edit_ARX->show();
-}
-
 
 void MainWindow::Pobiezdane_ARX()
 {
@@ -346,12 +275,85 @@ void MainWindow::Pobiezdane_ARX()
 
 void MainWindow::on_checkBox_stateChanged(int arg1)
 {
-    sym.set_tryb(ui->checkBox->isChecked());
+    sym.set_tryb(ui->chboxCalka->isChecked());
 }
 
 
 void MainWindow::on_Spbox_Stala_valueChanged(double arg1)
 {
     sym.set_stala(arg1);
+}
+
+
+void MainWindow::on_StartStop_clicked()
+{
+    sym.StartStop();
+    working=!working;
+    if(!working)timer->stop();else timer->start();
+}
+
+
+void MainWindow::on_Reset_clicked()
+{
+    if(working)on_StartStop_clicked();
+    if(!working)timer->stop();
+    sym.Setup();
+    sym.reset();
+    x=0;
+    usunSerie();
+
+    utworzSerie();
+
+    ustawNazwy();
+
+    resetMaksMin();
+
+    dodajSerie();
+
+    utworzOsie();
+
+
+    ui->ChartUchyb->setChart(chart1);
+    ui->Chartwartosci->setChart(chart2);
+    ui->ChartSterowanie->setChart(chart3);
+}
+
+
+void MainWindow::on_ustaw_S_valueChanged(double arg1)
+{
+    sym.set_stala(arg1);
+}
+
+
+void MainWindow::on_Sygnal_currentTextChanged(const QString &arg1)
+{
+    Q_UNUSED(arg1);
+    sig();
+}
+
+
+void MainWindow::on_chboxCalka_stateChanged(int arg1)
+{
+    sym.set_tryb(ui->chboxCalka->isChecked());
+}
+
+
+void MainWindow::on_pidReset_clicked()
+{
+    sym.reset();
+}
+
+
+void MainWindow::on_edytujARX_clicked()
+{
+    edit_ARX->Set_A1(sym.Get_A_ARX(0));
+    edit_ARX->Set_A2(sym.Get_A_ARX(1));
+    edit_ARX->Set_A3(sym.Get_A_ARX(2));
+    edit_ARX->Set_B1(sym.Get_B_ARX(0));
+    edit_ARX->Set_B2(sym.Get_B_ARX(1));
+    edit_ARX->Set_B3(sym.Get_B_ARX(2));
+    edit_ARX->Set_K(sym.Get_K_ARX());
+    edit_ARX->Set_Odchyl(sym.Get_odchyl_Arx());
+    edit_ARX->show();
 }
 

@@ -15,6 +15,7 @@
 #include <QtWidgets/QDoubleSpinBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
@@ -50,6 +51,8 @@ public:
     QSpinBox *spinBox_k;
     QLabel *label_4;
     QDoubleSpinBox *Spbox_odchyl;
+    QSpacerItem *verticalSpacer_5;
+    QPushButton *buttonAccept;
     QSpacerItem *verticalSpacer_4;
 
     void setupUi(QDialog *Dialog_ARX)
@@ -211,6 +214,15 @@ public:
 
         verticalLayout_4->addLayout(horizontalLayout_6);
 
+        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_5);
+
+        buttonAccept = new QPushButton(Dialog_ARX);
+        buttonAccept->setObjectName("buttonAccept");
+
+        verticalLayout_4->addWidget(buttonAccept);
+
         verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_4->addItem(verticalSpacer_4);
@@ -222,6 +234,8 @@ public:
         verticalLayout_4->setStretch(4, 2);
         verticalLayout_4->setStretch(5, 2);
         verticalLayout_4->setStretch(6, 1);
+        verticalLayout_4->setStretch(7, 2);
+        verticalLayout_4->setStretch(8, 1);
 
         retranslateUi(Dialog_ARX);
 
@@ -235,6 +249,7 @@ public:
         label_2->setText(QCoreApplication::translate("Dialog_ARX", "B", nullptr));
         label_3->setText(QCoreApplication::translate("Dialog_ARX", "K", nullptr));
         label_4->setText(QCoreApplication::translate("Dialog_ARX", "Odchylenie", nullptr));
+        buttonAccept->setText(QCoreApplication::translate("Dialog_ARX", "Akceptuj", nullptr));
     } // retranslateUi
 
 };

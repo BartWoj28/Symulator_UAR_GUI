@@ -31,14 +31,14 @@
            <number>4</number>
           </property>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="StartStop">
             <property name="text">
              <string>Start/Stop</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="Reset">
             <property name="text">
              <string>Reset</string>
             </property>
@@ -117,7 +117,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QDoubleSpinBox" name="Spbox_Stala">
+              <widget class="QDoubleSpinBox" name="ustaw_S">
                <property name="minimum">
                 <double>-100.000000000000000</double>
                </property>
@@ -173,7 +173,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QComboBox" name="comboBox">
+                <widget class="QComboBox" name="Sygnal">
                  <item>
                   <property name="text">
                    <string>Skok</string>
@@ -359,7 +359,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox">
+                <widget class="QCheckBox" name="chboxCalka">
                  <property name="text">
                   <string>Przed sumą</string>
                  </property>
@@ -396,7 +396,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_4">
+                <widget class="QPushButton" name="pidReset">
                  <property name="text">
                   <string>Reset</string>
                  </property>
@@ -445,7 +445,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="edytujARX">
              <property name="text">
               <string>Modyfikuj</string>
              </property>

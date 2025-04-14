@@ -37,8 +37,8 @@ public:
     QVBoxLayout *verticalLayout_15;
     QVBoxLayout *verticalLayout_16;
     QHBoxLayout *horizontalLayout_8;
-    QPushButton *pushButton;
-    QPushButton *pushButton_3;
+    QPushButton *StartStop;
+    QPushButton *Reset;
     QDoubleSpinBox *Spbox_inter;
     QLabel *label_2;
     QFrame *frame;
@@ -47,14 +47,14 @@ public:
     QLabel *label;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label_12;
-    QDoubleSpinBox *Spbox_Stala;
+    QDoubleSpinBox *ustaw_S;
     QGridLayout *gridLayout;
     QVBoxLayout *verticalLayout_9;
     QLabel *label_5;
     QSpinBox *ustawT;
     QVBoxLayout *verticalLayout_8;
     QLabel *label_6;
-    QComboBox *comboBox;
+    QComboBox *Sygnal;
     QVBoxLayout *verticalLayout_11;
     QLabel *label_3;
     QDoubleSpinBox *ustawA;
@@ -74,16 +74,16 @@ public:
     QDoubleSpinBox *ustawTd;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_8;
-    QCheckBox *checkBox;
+    QCheckBox *chboxCalka;
     QDoubleSpinBox *ustawTi;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_9;
-    QPushButton *pushButton_4;
+    QPushButton *pidReset;
     QFrame *frame_3;
     QGridLayout *gridLayout_4;
     QVBoxLayout *verticalLayout_14;
     QLabel *label_14;
-    QPushButton *pushButton_2;
+    QPushButton *edytujARX;
     QVBoxLayout *verticalLayout;
     QChartView *Chartwartosci;
     QHBoxLayout *horizontalLayout_3;
@@ -110,15 +110,15 @@ public:
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setSpacing(4);
         horizontalLayout_8->setObjectName("horizontalLayout_8");
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName("pushButton");
+        StartStop = new QPushButton(centralwidget);
+        StartStop->setObjectName("StartStop");
 
-        horizontalLayout_8->addWidget(pushButton);
+        horizontalLayout_8->addWidget(StartStop);
 
-        pushButton_3 = new QPushButton(centralwidget);
-        pushButton_3->setObjectName("pushButton_3");
+        Reset = new QPushButton(centralwidget);
+        Reset->setObjectName("Reset");
 
-        horizontalLayout_8->addWidget(pushButton_3);
+        horizontalLayout_8->addWidget(Reset);
 
         Spbox_inter = new QDoubleSpinBox(centralwidget);
         Spbox_inter->setObjectName("Spbox_inter");
@@ -163,12 +163,13 @@ public:
 
         horizontalLayout_2->addWidget(label_12);
 
-        Spbox_Stala = new QDoubleSpinBox(frame);
-        Spbox_Stala->setObjectName("Spbox_Stala");
-        Spbox_Stala->setSingleStep(0.100000000000000);
-        Spbox_Stala->setValue(1.000000000000000);
+        ustaw_S = new QDoubleSpinBox(frame);
+        ustaw_S->setObjectName("ustaw_S");
+        ustaw_S->setMinimum(-100.000000000000000);
+        ustaw_S->setSingleStep(0.100000000000000);
+        ustaw_S->setValue(1.000000000000000);
 
-        horizontalLayout_2->addWidget(Spbox_Stala);
+        horizontalLayout_2->addWidget(ustaw_S);
 
 
         verticalLayout_12->addLayout(horizontalLayout_2);
@@ -202,13 +203,13 @@ public:
 
         verticalLayout_8->addWidget(label_6);
 
-        comboBox = new QComboBox(frame);
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->setObjectName("comboBox");
+        Sygnal = new QComboBox(frame);
+        Sygnal->addItem(QString());
+        Sygnal->addItem(QString());
+        Sygnal->addItem(QString());
+        Sygnal->setObjectName("Sygnal");
 
-        verticalLayout_8->addWidget(comboBox);
+        verticalLayout_8->addWidget(Sygnal);
 
 
         gridLayout->addLayout(verticalLayout_8, 1, 1, 1, 1);
@@ -327,11 +328,11 @@ public:
 
         verticalLayout_5->addWidget(label_8);
 
-        checkBox = new QCheckBox(frame_2);
-        checkBox->setObjectName("checkBox");
-        checkBox->setChecked(true);
+        chboxCalka = new QCheckBox(frame_2);
+        chboxCalka->setObjectName("chboxCalka");
+        chboxCalka->setChecked(true);
 
-        verticalLayout_5->addWidget(checkBox);
+        verticalLayout_5->addWidget(chboxCalka);
 
         ustawTi = new QDoubleSpinBox(frame_2);
         ustawTi->setObjectName("ustawTi");
@@ -352,10 +353,10 @@ public:
 
         verticalLayout_4->addWidget(label_9);
 
-        pushButton_4 = new QPushButton(frame_2);
-        pushButton_4->setObjectName("pushButton_4");
+        pidReset = new QPushButton(frame_2);
+        pidReset->setObjectName("pidReset");
 
-        verticalLayout_4->addWidget(pushButton_4);
+        verticalLayout_4->addWidget(pidReset);
 
 
         gridLayout_2->addLayout(verticalLayout_4, 1, 1, 1, 1);
@@ -385,10 +386,10 @@ public:
 
         verticalLayout_14->addWidget(label_14);
 
-        pushButton_2 = new QPushButton(frame_3);
-        pushButton_2->setObjectName("pushButton_2");
+        edytujARX = new QPushButton(frame_3);
+        edytujARX->setObjectName("edytujARX");
 
-        verticalLayout_14->addWidget(pushButton_2);
+        verticalLayout_14->addWidget(edytujARX);
 
         verticalLayout_14->setStretch(0, 1);
         verticalLayout_14->setStretch(1, 2);
@@ -451,16 +452,16 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "SUAR", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Start/Stop", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
+        StartStop->setText(QCoreApplication::translate("MainWindow", "Start/Stop", nullptr));
+        Reset->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Interwa\305\202", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Generator", nullptr));
         label_12->setText(QCoreApplication::translate("MainWindow", "S", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "T", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "Sygna\305\202", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Skok", nullptr));
-        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Pros", nullptr));
-        comboBox->setItemText(2, QCoreApplication::translate("MainWindow", "Sinusoida", nullptr));
+        Sygnal->setItemText(0, QCoreApplication::translate("MainWindow", "Skok", nullptr));
+        Sygnal->setItemText(1, QCoreApplication::translate("MainWindow", "Pros", nullptr));
+        Sygnal->setItemText(2, QCoreApplication::translate("MainWindow", "Sinusoida", nullptr));
 
         label_3->setText(QCoreApplication::translate("MainWindow", "A", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "P", nullptr));
@@ -468,11 +469,11 @@ public:
         label_11->setText(QCoreApplication::translate("MainWindow", "K", nullptr));
         label_7->setText(QCoreApplication::translate("MainWindow", "Td", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Ti", nullptr));
-        checkBox->setText(QCoreApplication::translate("MainWindow", "Przed sum\304\205", nullptr));
+        chboxCalka->setText(QCoreApplication::translate("MainWindow", "Przed sum\304\205", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "Pami\304\231\304\207", nullptr));
-        pushButton_4->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
+        pidReset->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
         label_14->setText(QCoreApplication::translate("MainWindow", "ARX", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Modyfikuj", nullptr));
+        edytujARX->setText(QCoreApplication::translate("MainWindow", "Modyfikuj", nullptr));
     } // retranslateUi
 
 };

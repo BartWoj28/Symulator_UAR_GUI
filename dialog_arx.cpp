@@ -57,8 +57,10 @@ void Dialog_ARX::Set_Odchyl(double a)
 
 }
 
-void Dialog_ARX::on_Dialog_ARX_finished(int result)
+
+void Dialog_ARX::on_buttonAccept_clicked()
 {
+    //wyciągniecie wartości do pól po zaakceptowaniu zmian
     a1=ui->SpinBox_A1->value();
     a2=ui->SpinBox_A2->value();
     a3=ui->SpinBox_A3->value();
@@ -67,5 +69,7 @@ void Dialog_ARX::on_Dialog_ARX_finished(int result)
     b3=ui->SpinBox_B3->value();
     K=ui->spinBox_k->value();
     odchyl=ui->Spbox_odchyl->value();
+    // emisja sygnału połączonego ze slotem w okienku głównym
+    emit accept();
 }
 

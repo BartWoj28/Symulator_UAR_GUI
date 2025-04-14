@@ -15,6 +15,7 @@ public:
     explicit Dialog_ARX(QWidget *parent = nullptr);
     ~Dialog_ARX();
 
+    //publiczne pola do przechowywania danych przekazywanych symulatorowi
     double a1;
     double a2;
     double a3;
@@ -24,6 +25,7 @@ public:
     double odchyl;
     int K;
 
+    //setery wartości w kontrolkach
     void    Set_A1(double a);
     void    Set_A2(double a);
     void    Set_A3(double a);
@@ -33,11 +35,11 @@ public:
     void    Set_Odchyl(double a);
     void    Set_K(int k);
 private slots:
-    void on_Dialog_ARX_finished(int result);
+
+    void on_buttonAccept_clicked();
 
 private:
     Ui::Dialog_ARX *ui;
-    bool Zi=false;
 
 };
 
