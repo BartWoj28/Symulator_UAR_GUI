@@ -126,7 +126,7 @@ private:
     double min_y2=0;
     double min_y3=0;
     //Okno dialogowe do regulacji ARX
-    Dialog_ARX* edit_ARX=new Dialog_ARX;
+    Dialog_ARX* edit_ARX;
     //minimalna wartość na osi x na wykresach
     int x=0;
 };

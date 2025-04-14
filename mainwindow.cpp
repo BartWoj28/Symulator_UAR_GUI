@@ -6,8 +6,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow),timer(new QTimer(this))
 {
     ui->setupUi(this);
+    //wywołanie przygotowania wartości początkowych symulatora
     sym.Setup();
+
     connect(timer,SIGNAL(timeout()),this,SLOT(advance()));
+    //wywołanie slotów do ustawienia wartości początkowych
     on_Spbox_inter_valueChanged(ui->Spbox_inter->value());
     on_Spbox_Stala_valueChanged(ui->ustaw_S->value());
     on_ustawA_valueChanged(ui->ustawA->value());
@@ -16,6 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
     on_ustawKpid_valueChanged(ui->ustawKpid->value());
     on_ustawTi_valueChanged(ui->ustawTi->value());
     on_ustawTd_valueChanged(ui->ustawTd->value());
+
+    //ręczne ustawienie współczynników modelu ARX
     sym.set_a1(-0.4);
     sym.set_a2(0.2);
     sym.set_a3(0.0);
@@ -25,10 +30,16 @@ MainWindow::MainWindow(QWidget *parent)
     sym.set_arx_k(1);
 
 
-
+    //wywołąnie metody do ustawienia rodzaju sygnału zadanego
     sig();
+
+    //utworzenie instancjo okienka dialogowego
     edit_ARX = new Dialog_ARX;
+
+    //połączenie sygnału akceptacji zmian okienka dialogowego ze slotem okienka głównego
     connect(edit_ARX,SIGNAL(accepted()),this,SLOT(Pobiezdane_ARX()));
+
+    //wywołanie slotów do przyotowania wykresów
     ustawNazwy();
 
     dodajSerie();
@@ -48,6 +59,7 @@ MainWindow::~MainWindow()
     usun_charty();
 }
 
+// metoda do zmiany rodzaju sygnału
 void MainWindow::sig()
 {
     signal newsig;
@@ -60,11 +72,13 @@ void MainWindow::sig()
 
 }
 
+// wykonanie kroku symulacji
 void MainWindow::advance()
 {
     if(sym.get_start()){
         sym.symulacja();
 
+        // ucinanie wykresóW
         if(sym.get_ite()>42.0)
         {
             x=(sym.get_ite()-38.0);
@@ -76,6 +90,7 @@ void MainWindow::advance()
             series6->remove(0);
             series7->remove(0);
         }
+
         dodacDoSerii();
 
         resetMaksMin();
@@ -258,6 +273,7 @@ void MainWindow::on_Spbox_inter_valueChanged(double arg1)
     timer->setInterval(arg1*1000);
 }
 
+//Pobieranie danych z ARX
 void MainWindow::Pobiezdane_ARX()
 {
 
@@ -346,6 +362,7 @@ void MainWindow::on_pidReset_clicked()
 
 void MainWindow::on_edytujARX_clicked()
 {
+    // ustawnienie aktualnych wartości ARX w okienku dialogowym i wyświetlenie go
     edit_ARX->Set_A1(sym.Get_A_ARX(0));
     edit_ARX->Set_A2(sym.Get_A_ARX(1));
     edit_ARX->Set_A3(sym.Get_A_ARX(2));
